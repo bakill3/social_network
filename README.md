@@ -1,2 +1,12 @@
 # social_network
-I started this project on 04/08/2018. 
+I started this project on 04/08/2018 for practicing. 
+
+Current Features:
+  - Login/Register; - Ajax
+  - Likes; - AJAX
+  - Posts (Images & Embed Videos); - PHP
+  - Following System; - Ajax
+  - Notification System; - Ajax
+  - Search; - Ajax
+  - Settings (About/Hobbies/Profile Picture); - PHP
+
