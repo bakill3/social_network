@@ -10,3 +10,4 @@ Current Features:
   - Search; - Ajax
   - Settings (About/Hobbies/Profile Picture); - PHP
 
+![alt text](https://github.com/bakill3/social_network/blob/master/social.png)
