@@ -2,7 +2,7 @@
 I started this project on 04/08/2018 for practicing. 
 
 Current Features:
-  - Login/Register; - Ajax
+  - Login/Register with email confirmation; - PHP
   - Likes; - AJAX
   - Posts (Images & Embed Videos); - PHP
   - Following System; - Ajax
