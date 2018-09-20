@@ -1,7 +1,7 @@
-#Social Network
+# Social Network
 *I started this project on 04/08/2018 for practicing.*
 
-##Current Features:
+## Current Features:
   - Login/Register with email confirmation; - PHP
   - Likes; - AJAX/PHP
   - Posts (Images & Embed Videos); - PHP
