@@ -3,11 +3,11 @@ I started this project on 04/08/2018 for practicing.
 
 Current Features:
   - Login/Register with email confirmation; - PHP
-  - Likes; - AJAX
+  - Likes; - AJAX/PHP
   - Posts (Images & Embed Videos); - PHP
-  - Following System; - Ajax
-  - Notification System; - Ajax
-  - Search; - Ajax
+  - Following System; - Ajax/PHP
+  - Notification System; - Ajax/PHP
+  - Search; - Ajax/PHP
   - Settings (About/Hobbies/Profile Picture); - PHP
   - Use of LazyLoad to load images at the "browser's view" - JS/SEO;
   - Use of Infinite Scrolling for posts on the HomePage - JQuery/AJAX/PHP/SEO;
