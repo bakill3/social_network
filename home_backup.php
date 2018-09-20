@@ -1,8 +1,9 @@
-<?php 
+	<?php 
 
 include 'header.php'; 
 
 ?>
+
 
 <div class="bem_vindo">
 	<h1 class="text-white text-center"><span class="texto_nice"><span class="text-white">Publicações</span> Recentes </span></h1>
@@ -22,13 +23,6 @@ include 'header.php';
 		$id_perfil = $info_post['id_perfil'];
 
 
-		if (isset($_POST['btn_'.$id_post.''])) {
-			mysqli_query($link, "INSERT INTO likes (id_user, id_post) VALUES ('".$_SESSION['user'][5]."', '$id_post')") or die(mysqli_error($link));
-			header('Location: home.php');
-			exit(0);
-		}
-
-		$query_likes = mysqli_query($link, "SELECT * FROM likes WHERE id_post='$id_post' AND id_user='".$_SESSION['user'][5]."'");
 		
 
 
@@ -47,13 +41,18 @@ include 'header.php';
 				if (mysqli_num_rows($fotos) > 0) {
 					$info_fotos = mysqli_fetch_assoc($fotos);
 					$foto_gal = $info_fotos['foto'];
-					echo "<br><div class='text-center'><img src='$foto_gal' class='zoom img-thumbnail img-responsive' style='width: 400px'></div>";
+					echo "<br><div class='text-center'><img data-src='$foto_gal' class='zoom img-thumbnail img-responsive lazy_img' alt='Publicação' style='width: 400px'></div>";
 				}
 				?></p>
 				<div class="bottom-comment">
 					<div class="comment-date"><?php echo $data; ?></div>
 					<ul class="comment-actions">
 						<?php 
+						$likes = mysqli_query($link, "SELECT * FROM likes WHERE id_post='$id_post'");
+						if (mysqli_num_rows($likes) > 0) {
+							$contagem = mysqli_num_rows($likes);
+						}
+
 						if ($id_user_postou == $_SESSION['user'][5]) {
 							echo '<li class="complain">
 							<form method="POST">
@@ -63,15 +62,28 @@ include 'header.php';
 							</li>';
 						}
 						?>
-						<form method="POST">
+						<br>
+						<li class="reply">
+							<?php
+							if (isset($contagem)) {
+								echo "<span style='font-size: 120%; color: black;' class='font-weight-bold'>". $contagem."</span><i class='fas fa-heart' style='color: #ff5722ed;'></i>";
+							}
+							$query_likes = mysqli_query($link, "SELECT * FROM likes WHERE id_post='$id_post' AND id_user='".$_SESSION['user'][5]."'");
+							if (mysqli_num_rows($query_likes) == 0) {
+								?>
+								<button type="button" class="gostar btn btn-primary" id="<?php echo $id_post; ?>"><i class="far fa-heart"></i></button>
+								<?php
+							} else { 
+								?>
+								<button type="button" class="gostar btn btn-primary" id="<?php echo $id_post; ?>"><i class="fas fa-heart"></i></button>
+								<?php
+							}
+							?>
 
-							<button type="submit" name="btn_<?php echo $id_post; ?>" class="btn btn-info"><?php if (mysqli_num_rows($query_likes) == 1) { echo "Gostou <i class='fas fa-heart'>"; } else { echo "Gosto <i class='far fa-heart'>"; } ?></i>
-
-							</button>
-						</form>
 
 
-						<li class="reply">Reply</li>
+
+						</li>
 					</ul>
 				</div>
 			</div>
