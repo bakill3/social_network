@@ -12,4 +12,9 @@ Current Features:
   - Use of LazyLoad to load images at the "browser's view" - JS/SEO;
   - Use of Infinite Srolling for posts on the HomePage - JQuery/AJAX/PHP;
 
+PageSpeed Insights Results (20/09/2018 - SEO):
+  - Mobile: 81/100;
+  - Desktop: 92/100;
+
+
 ![alt text](https://github.com/bakill3/social_network/blob/master/social.png)
