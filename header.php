@@ -79,7 +79,7 @@ if ($pagina != "index.php" && $pagina != "sobre.php" && $pagina != "registo.php"
   }
 
 
-  $(".gostar").click(function () {
+  $(document).on('click','.gostar',function(){
     if ($(this).hasClass('gostou')){
       alert("Já gostaste");
     } else {
