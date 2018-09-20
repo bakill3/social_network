@@ -10,7 +10,7 @@ Current Features:
   - Search; - Ajax
   - Settings (About/Hobbies/Profile Picture); - PHP
   - Use of LazyLoad to load images at the "browser's view" - JS/SEO;
-  - Use of Infinite Srolling for posts on the HomePage - JQuery/AJAX/PHP;
+  - Use of Infinite Scrolling for posts on the HomePage - JQuery/AJAX/PHP/SEO;
 
 
 
