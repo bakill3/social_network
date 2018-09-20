@@ -10,5 +10,6 @@ Current Features:
   - Search; - Ajax
   - Settings (About/Hobbies/Profile Picture); - PHP
   - Use of LazyLoad to load images at the "browser's view" - JS/SEO;
+  - Use of Infinite Srolling for posts on the HomePage - JQuery/AJAX/PHP;
 
 ![alt text](https://github.com/bakill3/social_network/blob/master/social.png)
