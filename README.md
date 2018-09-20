@@ -10,7 +10,7 @@
   - Search; - Ajax/PHP
   - Settings (About/Hobbies/Profile Picture); - PHP
   
-## SEO:
+## SEO/Other:
   - Use of LazyLoad to load images at the "browser's view" - JS/SEO;
   - Use of Infinite Scrolling for posts on the HomePage - JQuery/AJAX/PHP/SEO;
   - PageSpeed Insights Results (20/09/2018 - SEO):
