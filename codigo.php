@@ -154,7 +154,7 @@ if (isset($_POST['postar'])) {
 	if (!empty($post)) {
 		if ($len_post > 0) {
 
-			$post = preg_replace('"\b(https?://\S+)"', '<div class="text-center"><iframe  width="425" height="344" src="$1" frameborder="0" allowfullscreen></iframe></div></a>', $post);
+			$post = preg_replace('"\b(https?://\S+)"', '<div class="text-center embed-responsive embed-responsive-21by9"><iframe class="embed-responsive-item" width="425" height="344" src="$1" frameborder="0" allowfullscreen></iframe></div></a>', $post);
 
 
 			mysqli_query($link, "INSERT INTO posts (id_user_postou, id_perfil, post, data) VALUES ('$id_user', '$id_perfil', '$post', '$data_atual')") or die(mysqli_error($link));
