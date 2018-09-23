@@ -4,6 +4,8 @@
 ## Current Features:
   - Login/Register with email confirmation; - PHP
   - Likes; - AJAX/PHP
+  - Profile;
+  - Gallery Modal/Alert;
   - Posts: - PHP
     - Images;
     - Embed WebSite/Videos (iframes);
