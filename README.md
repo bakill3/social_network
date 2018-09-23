@@ -18,17 +18,9 @@
   - Use of LazyLoad to load images at the "browser's view" - JS/SEO;
   - Use of Infinite Scrolling for posts on the HomePage - JQuery/AJAX/PHP/SEO;
   - PageSpeed Insights Results (22/09/2018 - SEO):
-    - Mobile: 100/100;
-    
-    ![alt text](https://github.com/bakill3/social_network/blob/master/in1.png)
-    
-    - Desktop: 100/100;
-    
-    ![alt text](https://github.com/bakill3/social_network/blob/master/in2.png)
-    
-  Desktop                    |  Mobile
-  :-------------------------:|:-------------------------:
-  ![](https://github.com/bakill3/social_network/blob/master/desktop.png) ![alt text](https://github.com/bakill3/social_network/blob/master/in1.png)  |  ![](https://github.com/bakill3/social_network/blob/master/mobile.png) ![alt text](https://github.com/bakill3/social_network/blob/master/in2.png)
+    Desktop 100/100            |  Mobile 100/100
+    :-------------------------:|:-------------------------:
+    ![](https://github.com/bakill3/social_network/blob/master/desktop.png) ![alt text](https://github.com/bakill3/social_network/blob/master/in1.png)  |  ![](https://github.com/bakill3/social_network/blob/master/mobile.png) ![alt text](https://github.com/bakill3/social_network/blob/master/in2.png)
     
     
 
