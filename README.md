@@ -4,9 +4,12 @@
 ## Current Features:
   - Login/Register with email confirmation; - PHP
   - Likes; - AJAX/PHP
-  - Posts (Images & Embed Videos); - PHP
+  - Posts: - PHP
+    - Images;
+    - Embed WebSite/Videos (iframes);
+    - Text;
   - Following System; - Ajax/PHP
-  - Notification System; - Ajax/PHP
+  - Notification System with Sounds; - Ajax/PHP/JQuery
   - Search; - Ajax/PHP
   - Settings (About/Hobbies/Profile Picture); - PHP
     
