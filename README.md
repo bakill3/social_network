@@ -28,7 +28,7 @@
     
   Desktop                    |  Mobile
   :-------------------------:|:-------------------------:
-  ![](https://github.com/bakill3/social_network/blob/master/desktop.png)  |  ![](https://github.com/bakill3/social_network/blob/master/mobile.png)
+  ![](https://github.com/bakill3/social_network/blob/master/desktop.png) ![alt text](https://github.com/bakill3/social_network/blob/master/in1.png)  |  ![](https://github.com/bakill3/social_network/blob/master/mobile.png) ![alt text](https://github.com/bakill3/social_network/blob/master/in2.png)
     
     
 
