@@ -11,12 +11,15 @@ if (mysqli_num_rows($result) > 0) {
 		$id_notificacao = $row['id_notificacao'];
 		$foto = $row['foto'];
 		$tipo = $row['tipo'];
+		$id_user_notificacao = $row['id'];
 
 		$href = "profile.php?id=".$_SESSION['user'][5]."";
 		if ($tipo == "post") {
 			$modo = "postou no seu perfil";
-		} else {
+		} elseif ($tipo == "like") {
 			$modo = "gostou da sua publicação";
+		} else {
+			$modo = "começou a seguir-te";
 		}
 		$output .= '
 		<script>
@@ -37,7 +40,7 @@ if (mysqli_num_rows($result) > 0) {
 		<a href="#" id="fechar_'.$id_notificacao.'" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<input type="hidden" id="notificacao_'.$id_notificacao.'" value="'.$id_notificacao.'" />
 		<img class="rounded-circle" style="width: 50px; display: inline-block;" src="'.$foto.'">
-		<p style="display: inline-block; text-align: right;"><strong>'.$row["f_nome"]. " ". $row["l_nome"].'</strong>
+		<p style="display: inline-block; text-align: right;"><a href="profile.php?id='.$id_user_notificacao.'"><strong>'.$row["f_nome"]. " ". $row["l_nome"].'</strong></a>
 		<small><em>'.$modo.'</em></small>
 		</p>
 		</div>

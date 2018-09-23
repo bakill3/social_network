@@ -57,11 +57,11 @@ if (isset($_POST['getData'])) {
                         $query_likes = mysqli_query($link, "SELECT * FROM likes WHERE id_post='$id_post' AND id_user='".$_SESSION['user'][5]."'");
                         if (mysqli_num_rows($query_likes) == 0) {
 
-                                $likezinho = '<button type="button" class="gostar btn btn-primary" id="'.$id_post.'"><i class="far fa-heart"></i></button>';
+                                $likezinho = '<button type="button" class="gostar btn btn-primary" id="'.$id_post.'" aria-label="Gostar"><i class="far fa-heart"></i></button>';
                                 
                         } else { 
                                 
-                                $likezinho = '<button type="button" class="gostar btn btn-primary" id="'.$id_post.'"><i class="fas fa-heart"></i></button>';
+                                $likezinho = '<button type="button" class="gostar btn btn-primary" id="'.$id_post.'" aria-label="Gostar"><i class="fas fa-heart"></i></button>';
                                 
                         }
 
@@ -69,11 +69,16 @@ if (isset($_POST['getData'])) {
                         $response .= "
                         <div class='comment-wrap'>
                         <a href='profile.php?id=$id_user'>
-                        <div class='photo'>
-                        <img class='avatar zoom' src='$foto_post'>
-                        </div>
+
                         <div class='comment-block'>
-                        <h5> $f_nome $l_nome </h5>
+
+                        <div class='photo' style='display: inline-block;'>
+                                <img class='avatar zoom' src='$foto_post' alt='$f_nome $l_nome'>
+                        </div>
+
+                        <div style='display: inline-block;'>
+                                <h5 class='h5_sp'> $f_nome $l_nome </h5>
+                        </div>
                         </a>
                         <p class='comment-text'> 
                         $post

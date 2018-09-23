@@ -61,6 +61,7 @@ if (isset($_POST['mudar_info'])) {
           }
         }
 	*/
+        
 
         header('Location: settings.php');
         exit(0);

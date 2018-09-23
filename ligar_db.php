@@ -12,4 +12,5 @@ if ($escolheBD==FALSE) {
 	mysqli_error();
 	exit;
 }
+session_start();
 ?>

@@ -10,7 +10,7 @@ if (isset($_SESSION['user'])) {
 
 	<div class="bem_vindo">
 		<h1 class="text-white text-center"><span class="texto_nice">Registo</span><br></h1>
-		<p class="text-white text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet nunc quis massa tempus blandit at eget diam.</p>
+		<p class="text-white text-center">Rede social em desenvolvimento. Testa á vontade!</p>
 		<br>
 
 		<div class="formulario_main">

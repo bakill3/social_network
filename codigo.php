@@ -1,6 +1,5 @@
 <?php
 include 'ligar_db.php'; 
-session_start();
 
 include_once 'phpmailer/PHPMailerAutoload.php'; //LIVRARIA PHPMAILER
 
@@ -62,8 +61,8 @@ if (isset($_POST['registo'])) {
 				$mail->isSMTP();                            // Set mailer to use SMTP
 				$mail->Host = 'smtp.gmail.com';              // Specify main and backup SMTP servers
 				$mail->SMTPAuth = true;                     // Enable SMTP authentication
-				$mail->Username = 'EMAIL'; // your email id
-				$mail->Password = 'PASSWORD'; // your password
+				$mail->Username = 'lifepageshop123@gmail.com'; // your email id
+				$mail->Password = 'flash136'; // your password
 				$mail->SMTPSecure = 'tls';                  
 				$mail->Port = 587;     //587 is used for Outgoing Mail (SMTP) Server.
 				$mail->setFrom('lifepageshop123@gmail.com', 'Sivex Social Network');
@@ -154,7 +153,7 @@ if (isset($_POST['postar'])) {
 	if (!empty($post)) {
 		if ($len_post > 0) {
 
-			$post = preg_replace('"\b(https?://\S+)"', '<div class="text-center embed-responsive embed-responsive-21by9"><iframe class="embed-responsive-item" width="425" height="344" src="$1" frameborder="0" allowfullscreen></iframe></div></a>', $post);
+			$post = preg_replace('"\b(https?://\S+)"', '<div class="text-center embed-responsive embed-responsive-21by9"><iframe class="embed-responsive-item" width="425" height="344" src="$1" frameborder="0" title="Video" allowfullscreen></iframe></div></a>', $post);
 
 
 			mysqli_query($link, "INSERT INTO posts (id_user_postou, id_perfil, post, data) VALUES ('$id_user', '$id_perfil', '$post', '$data_atual')") or die(mysqli_error($link));

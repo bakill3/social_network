@@ -29,10 +29,10 @@ if (isset($_GET['id'])) {
 </style>
 
 
-<div class="row m-y-2">
+<div class="row m-y-2" style="box-shadow: 0px 0px 10px 3px rgba(158,158,158, 0.5); padding: 3%;">
  <div class="col-lg-4 pull-lg-8 text-xs-center">
 
-  <img src="<?php echo $foto; ?>" style="width: 250px;" alt="avatar zoom">
+  <img data-src="<?php echo $foto; ?>" class="lazy_img" style="width: 250px;" alt="avatar zoom">
 
 
 </div>
@@ -41,7 +41,7 @@ if (isset($_GET['id'])) {
   <div class="tab-content p-b-3">
     <div class="tab-pane active" id="profile">
       <div style="display: inline-block;">
-        <h4 class="m-y-2"><?php echo $nome." ".$apelido; ?></h4>
+        <h4 class="m-y-2 nome" id="<?php echo $nome." ".$apelido; ?>"><?php echo $nome." ".$apelido; ?></h4>
       </div>
       <div style="display: inline-block; padding-left: 1%; color: #ff0000cf;">
         <h6><span style="font-size: 115%;">@<?php echo $username; ?></span></h6>
@@ -70,17 +70,32 @@ if (isset($_GET['id'])) {
           </p>
         </div>
         <div class="col-md-6">
-          <h6>Tags</h6>
-          <a href="" class="tag tag-default tag-pill">html5</a>
-          <a href="" class="tag tag-default tag-pill">react</a>
-          <a href="" class="tag tag-default tag-pill">codeply</a>
-          <a href="" class="tag tag-default tag-pill">angularjs</a>
-          <a href="" class="tag tag-default tag-pill">css3</a>
-          <a href="" class="tag tag-default tag-pill">jquery</a>
-          <a href="" class="tag tag-default tag-pill">bootstrap</a>
-          <a href="" class="tag tag-default tag-pill">responsive-design</a>
+          <?php
+          if ($id_user == $_SESSION['user'][5]) {
+            ?>
+            <a href="settings.php" class="btn btn-lg btn-primary" style="width: 100%;">Editar Perfil <i class="fas fa-pencil-alt"></i></a>
+            <?php
+          } else {
+
+            $query56 = mysqli_query($link, "SELECT * FROM seguidores WHERE id_user='$id_user' AND id_seguidor='".$_SESSION['user'][5]."'");
+            if (mysqli_num_rows($query56) > 0) {
+              ?>
+              <button class="btn btn-lg btn-danger seguir" style="width: 100%;" id="<?php echo $id_user; ?>">Não Seguir <i class="fas fa-user-times"></i></button>
+              <?php
+            } else { 
+              ?>
+              <button class="btn btn-lg btn-primary seguir" style="width: 100%;" id="<?php echo $id_user; ?>">Seguir <i class="fas fa-user-plus"></i></button>
+              <?php
+            }
+          }
+          ?>
           <hr>
-          <span class="tag tag-primary"><i class="fa fa-user"></i> 900 Followers</span>
+          <?php
+
+          $query555 = mysqli_query($link, "SELECT * FROM seguidores WHERE id_user='$id_user'");
+
+          ?>
+          <span class="tag tag-primary seguidores" id="<?php echo mysqli_num_rows($query555); ?>"><i class="fa fa-user"></i> <?php echo mysqli_num_rows($query555); ?> Seguidores</span>
           <span class="tag tag-success"><i class="fa fa-cog"></i> 43 Forks</span>
           <span class="tag tag-danger"><i class="fa fa-eye"></i> 245 Views</span>
         </div>
@@ -104,7 +119,7 @@ if (isset($_GET['id'])) {
                           if (mysqli_num_rows($query_fotos) > 0) {
                             while ($info_fotos = mysqli_fetch_array($query_fotos)) {
                               $src = $info_fotos['foto'];
-                              echo "<img src='$src' class='zoom img-thumbnail' style='padding: 5px; width: 180px; height: 150px;'>";
+                              echo "<img data-src='$src' class='zoom img-thumbnail lazy_img' style='padding: 5px; width: 180px; height: 150px;'>";
                             }
                           } else {
                             echo "Este utilizador não tem fotografias";
@@ -158,14 +173,17 @@ if (isset($_GET['id'])) {
                   <div class="comments">
                     <form method="POST" enctype="multipart/form-data">
                       <div class="comment-wrap">
+                        <!--
                         <div class="photo">
                           <div class="avatar" style="background-image: url('<?php echo $foto_header; ?>')"></div>
                         </div>
+                      -->
                         <div class="comment-block">
-
-                          <textarea name="post" cols="30" rows="3" placeholder="Publica..."></textarea>
+                          <div class="form-group">
+                          	<textarea class="form-control" name="post" cols="30" rows="3" placeholder="Publica..."></textarea>
+                          </div>
                           <input type="file" name="file">
-                          <button type="submit" name="postar" class="btn btn-success" style="margin-left: 90%;">Postar <i class="fas fa-check"></i></button>
+                          <div class="text-right"> <button type="submit" name="postar" class="btn btn-success btn-lg">Postar <i class="fas fa-check"></i></button> </div>
 
                         </div>
 
@@ -190,11 +208,16 @@ if (isset($_GET['id'])) {
 
                       <a href="profile.php?id=<?php echo $id_user_postou; ?>">
                         <div class="comment-wrap">
-                          <div class="photo">
-                            <div class="avatar" style="background-image: url('<?php echo $foto_post; ?>')"></div>
-                          </div>
                           <div class="comment-block">
-                            <h5><?php echo $f_nome." ".$l_nome; ?></h5>
+
+
+                          <div class='photo' style='display: inline-block;'>
+                            <img class='avatar zoom' src='<?php echo $foto_post; ?>' alt='<?php echo $f_nome." ".$l_nome; ?>'>
+                          </div>
+
+                          <div style='display: inline-block;'>
+                            <h5 class='h5_sp'> <?php echo $f_nome." ".$l_nome; ?> </h5>
+                          </div>
                           </a>
                           <p class="comment-text">
                            <?php 
@@ -203,7 +226,7 @@ if (isset($_GET['id'])) {
                            if (mysqli_num_rows($fotos) > 0) {
                             $info_fotos = mysqli_fetch_assoc($fotos);
                             $foto_gal = $info_fotos['foto'];
-                            echo "<br><div class='text-center'><img src='$foto_gal' class='zoom img-thumbnail img-responsive' style='width: 400px'></div>";
+                            echo "<br><div class='text-center'><img data-src='$foto_gal' class='zoom img-thumbnail img-responsive lazy_img' style='width: 400px' alt='Foto'></div>";
                           }
                           ?>
 
@@ -229,7 +252,7 @@ if (isset($_GET['id'])) {
 
                          <?php
                          if (isset($contagem)) {
-                          echo "<span style='font-size: 120%;' class='font-weight-bold'>". $contagem."</span><i class='fas fa-heart'></i>";
+                          echo "<span style='font-size: 120%; color: black;' class='font-weight-bold'>". $contagem."</span><i class='fas fa-heart' style='color: #ff5722ed;'></i>";
                         }
                         $query_likes = mysqli_query($link, "SELECT * FROM likes WHERE id_post='$id_post' AND id_user='".$_SESSION['user'][5]."'");
                         if (mysqli_num_rows($query_likes) == 0) {
