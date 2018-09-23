@@ -20,6 +20,49 @@ if (isset($_GET['id'])) {
 }
 
 ?>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Fotos de <?php echo $nome." ".$apelido; ?></h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <?php 
+
+          echo "<div class='row'>";
+          $query_fotos = mysqli_query($link, "SELECT * FROM galeria WHERE id_user='$id_user' ORDER BY id");
+          if (mysqli_num_rows($query_fotos) > 0) {
+            while ($info_fotos = mysqli_fetch_array($query_fotos)) {
+              $src = $info_fotos['foto'];
+              echo "<img data-src='$src' class='zoom img-thumbnail lazy_img' style='padding: 2%; width: 250px; height: 180px;'>";
+            }
+          } else {
+            echo "Este utilizador não tem fotografias";
+          }
+          echo "</div>";
+
+      	?>
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
 <style class="cp-pen-styles">html, body {
   background-color: #f0f2fa;
   font-family: "PT Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
@@ -96,7 +139,7 @@ if (isset($_GET['id'])) {
 
           ?>
           <span class="tag tag-primary seguidores" id="<?php echo mysqli_num_rows($query555); ?>"><i class="fa fa-user"></i> <?php echo mysqli_num_rows($query555); ?> Seguidores</span>
-          <span class="tag tag-success"><i class="fa fa-cog"></i> 43 Forks</span>
+          <span class="tag tag-success"><i class="fa fa-cog"></i> 43 Estrelas</span>
           <span class="tag tag-danger"><i class="fa fa-eye"></i> 245 Views</span>
         </div>
         <div class="col-md-12">
@@ -111,7 +154,7 @@ if (isset($_GET['id'])) {
                               </div>
                             </div>
                           -->
-                          <h4 class="m-t-2"><span class="fa fa-clock-o ion-clock pull-xs-right"></span> Fotos</h4>
+                          <a href="#" data-toggle="modal" data-target="#myModal"><h4 class="m-t-2"><span class="fa fa-clock-o ion-clock pull-xs-right"></span> Fotos</h4></a>
 
                           <?php 
                           echo "<div class='row'>";
