@@ -10,6 +10,7 @@
     - Images;
     - Embed WebSite/Videos (iframes);
     - Text;
+    - Emojis :smiley: ;
   - Following System; - Ajax/PHP
   - Notification System with Sounds; - Ajax/PHP/JQuery
   - Search; - Ajax/PHP
