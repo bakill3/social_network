@@ -12,7 +12,8 @@
     - Text;
     - Emojis :smiley:;
   - Following System; - Ajax/PHP
-  - Notification System with Sounds; - Ajax/PHP/JQuery
+  - Notification System with Sounds; - Ajax/PHP/JQuery - POST/MESSAGE/FOLLOW/LIKES
+  - Real-Time Messages - PHP/AJAX/JQuery
   - Search; - Ajax/PHP
   - Settings (About/Hobbies/Profile Picture); - PHP
     
