@@ -1,7 +1,8 @@
 <?php 
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
+//header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+//header("Cache-Control: post-check=0, pre-check=0", false);
+//header("Pragma: no-cache");
+
 include 'codigo.php';
 $btns=array("primary", "warning", "info", "default", "success", "dark");
 $pagina = basename($_SERVER['PHP_SELF']);
@@ -15,6 +16,7 @@ $url = $_SERVER['REQUEST_URI'];
 <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
+	<meta charset="UTF-8">
 	<meta name="description" content="Rede social em desenvolvimento feita por Gabriel Brandão">
 	<meta name="keywords" content="HTML,CSS,PHP,JavaScript,JQuery,AJAX">
 	<meta name="author" content="Gabriel Brandão">
@@ -22,6 +24,8 @@ $url = $_SERVER['REQUEST_URI'];
 	<meta name="theme-color" content="#ff3300"/>
 
 	<!-- <link rel="stylesheet" href="bootstrap/css/all.css"> -->
+
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.css"> -->
 	
 	<!-- <link href="fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet"> -->
 	
@@ -114,165 +118,168 @@ $url = $_SERVER['REQUEST_URI'];
 			 .h5_sp {
 				color: #004bb9 !important;
 			 }
-			</style>
-		</head>
-		<body <?php if ($pagina == 'index.php' || $pagina == 'registo.php' || $pagina == 'home.php') { ?> style="background: url('https://wallpapersite.com/images/wallpapers/blur-background-3840x2160-spectrum-electromagnetic-4k-901.jpg'); background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-position: center;
-		background-size: cover" <?php } ?> >
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="index.php">SiveX</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+			 .dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea]{position:absolute;z-index:1000;min-width:160px;padding:5px 0;margin:2px 0 0;font-size:14px;text-align:left;list-style:none;background-color:#fff;-webkit-background-clip:padding-box;background-clip:padding-box;border:1px solid #ccc;border:1px solid rgba(0,0,0,.15);-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;-moz-box-shadow:0 6px 12px rgba(0,0,0,.175);-webkit-box-shadow:0 6px 12px rgba(0,0,0,.175);box-shadow:0 6px 12px rgba(0,0,0,.175)}.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item{font-size:14px;padding:1px 3px;border:0}.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item a{text-decoration:none;display:block;height:100%;line-height:1.8em;padding:0 1.54em 0 .615em;color:#4f4f4f}.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item.active,.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item:hover{background-color:#e4e4e4}.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item.active a,.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item:hover a{color:#333}.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item .emojioneemoji{font-size:inherit;height:2ex;width:2.1ex;min-height:20px;min-width:20px;display:inline-block;margin:0 5px .2ex 0;line-height:normal;vertical-align:middle;max-width:100%;top:0}.emojionearea-text .emojioneemoji,.emojionearea-text [class*=emojione-]{font-size:inherit;height:2ex;width:2.1ex;min-height:20px;min-width:20px;display:inline-block;margin:-.2ex .15em .2ex;line-height:normal;vertical-align:middle;max-width:100%;top:0}.emojionearea,.emojionearea *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}.emojionearea.emojionearea-disable{position:relative;background-color:#eee;-moz-user-select:-moz-none;-ms-user-select:none;-webkit-user-select:none;user-select:none}.emojionearea.emojionearea-disable:before{content:"";display:block;top:0;left:0;right:0;bottom:0;z-index:1;opacity:.3;position:absolute;background-color:#eee}.emojionearea,.emojionearea.form-control{display:block;position:relative!important;width:100%;height:auto;padding:0;font-size:14px;background-color:#FFF;border:1px solid #CCC;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-moz-transition:border-color .15s ease-in-out,-moz-box-shadow .15s ease-in-out;-o-transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;-webkit-transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out}.emojionearea.focused{border-color:#66AFE9;outline:0;-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}.emojionearea .emojionearea-editor{display:block;height:auto;min-height:8em;max-height:15em;overflow:auto;padding:6px 24px 6px 12px;line-height:1.42857143;font-size:inherit;color:#555;background-color:transparent;border:0;cursor:text;margin-right:1px;-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}.emojionearea .emojionearea-editor:empty:before{content:attr(placeholder);display:block;color:#BBB}.emojionearea .emojionearea-editor:focus{border:0;outline:0;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}.emojionearea .emojionearea-editor .emojioneemoji,.emojionearea .emojionearea-editor [class*=emojione-]{font-size:inherit;height:2ex;width:2.1ex;min-height:20px;min-width:20px;display:inline-block;margin:-.2ex .15em .2ex;line-height:normal;vertical-align:middle;max-width:100%;top:0}.emojionearea.emojionearea-inline{height:34px}.emojionearea.emojionearea-inline>.emojionearea-editor{height:32px;min-height:20px;overflow:hidden;white-space:nowrap;position:absolute;top:0;left:12px;right:24px;padding:6px 0}.emojionearea.emojionearea-inline>.emojionearea-button{top:4px}.emojionearea .emojionearea-button{z-index:5;position:absolute;right:3px;top:3px;width:24px;height:24px;opacity:.6;cursor:pointer;-moz-transition:opacity .3s ease-in-out;-o-transition:opacity .3s ease-in-out;-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.emojionearea .emojionearea-button:hover{opacity:1}.emojionearea .emojionearea-button>div{display:block;width:24px;height:24px;position:absolute;-moz-transition:all .4s ease-in-out;-o-transition:all .4s ease-in-out;-webkit-transition:all .4s ease-in-out;transition:all .4s ease-in-out}.emojionearea .emojionearea-button>div.emojionearea-button-open{background-position:0 -24px;filter:alpha(enabled=false);opacity:1}.emojionearea .emojionearea-button>div.emojionearea-button-close{background-position:0 0;-webkit-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);filter:alpha(Opacity=0);opacity:0}.emojionearea .emojionearea-button.active>div.emojionearea-button-open{-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);filter:alpha(Opacity=0);opacity:0}.emojionearea .emojionearea-button.active>div.emojionearea-button-close{-webkit-transform:rotate(0);-o-transform:rotate(0);transform:rotate(0);filter:alpha(enabled=false);opacity:1}.emojionearea .emojionearea-picker{background:#FFF;position:absolute;-moz-box-shadow:0 1px 5px rgba(0,0,0,.32);-webkit-box-shadow:0 1px 5px rgba(0,0,0,.32);box-shadow:0 1px 5px rgba(0,0,0,.32);-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;height:276px;width:316px;top:-15px;right:-15px;z-index:90;-moz-transition:all .25s ease-in-out;-o-transition:all .25s ease-in-out;-webkit-transition:all .25s ease-in-out;transition:all .25s ease-in-out;filter:alpha(Opacity=0);opacity:0;-moz-user-select:-moz-none;-ms-user-select:none;-webkit-user-select:none;user-select:none}.emojionearea .emojionearea-picker.hidden{display:none}.emojionearea .emojionearea-picker .emojionearea-wrapper{position:relative;height:276px;width:316px}.emojionearea .emojionearea-picker .emojionearea-wrapper:after{content:"";display:block;position:absolute;background-repeat:no-repeat;z-index:91}.emojionearea .emojionearea-picker .emojionearea-filters{width:100%;position:absolute;z-index:95;background:#F5F7F9;padding:0 0 0 7px;height:40px}.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter{display:block;float:left;height:40px;width:32px;padding:7px 1px 0;cursor:pointer;-webkit-filter:grayscale(1);filter:grayscale(1)}.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter.active{background:#fff}.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter.active,.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter:hover{-webkit-filter:grayscale(0);filter:grayscale(0)}.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter>i{width:24px;height:24px;top:0}.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter>img{width:24px;height:24px;margin:0 3px}.emojionearea .emojionearea-picker .emojionearea-search-panel{height:30px;position:absolute;z-index:95;top:40px;left:0;right:0;padding:5px 0 5px 8px}.emojionearea .emojionearea-picker .emojionearea-search-panel .emojionearea-tones{float:right;margin-right:10px;margin-top:-1px}.emojionearea .emojionearea-picker .emojionearea-tones-panel .emojionearea-tones{position:absolute;top:4px;left:171px}.emojionearea .emojionearea-picker .emojionearea-search{float:left;padding:0;height:20px;width:160px}.emojionearea .emojionearea-picker .emojionearea-search>input{outline:0;width:160px;min-width:160px;height:20px}.emojionearea .emojionearea-picker .emojionearea-tones{padding:0;width:120px;height:20px}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone{display:inline-block;padding:0;border:0;vertical-align:middle;outline:0;background:0 0;cursor:pointer;position:relative}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-0,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-0:after{background-color:#ffcf3e}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-1,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-1:after{background-color:#fae3c5}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-2,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-2:after{background-color:#e2cfa5}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-3,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-3:after{background-color:#daa478}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-4,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-4:after{background-color:#a78058}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-5,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-5:after{background-color:#5e4d43}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-bullet>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-square>.btn-tone{width:20px;height:20px;margin:0;background-color:transparent}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-bullet>.btn-tone:after,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-square>.btn-tone:after{content:"";position:absolute;display:block;top:4px;left:4px;width:12px;height:12px}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-bullet>.btn-tone.active:after,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-square>.btn-tone.active:after{top:0;left:0;width:20px;height:20px}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-checkbox>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-radio>.btn-tone{width:16px;height:16px;margin:0 2px}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-checkbox>.btn-tone.active:after,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-radio>.btn-tone.active:after{content:"";position:absolute;display:block;background-color:transparent;border:2px solid #fff;width:8px;height:8px;top:2px;left:2px;box-sizing:initial}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block:after,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block:before,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block>.emojionearea-category:after,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block>.emojionearea-category:before,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-title:after,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-title:before{content:" ";clear:both;display:block}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-bullet>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-bullet>.btn-tone:after,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-radio>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-radio>.btn-tone:after{-moz-border-radius:100%;-webkit-border-radius:100%;border-radius:100%}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-checkbox>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-checkbox>.btn-tone:after,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-square>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-square>.btn-tone:after{-moz-border-radius:1px;-webkit-border-radius:1px;border-radius:1px}.emojionearea .emojionearea-picker .emojionearea-scroll-area{height:236px;overflow:auto;overflow-x:hidden;width:100%;position:absolute;padding:0 0 5px}.emojionearea .emojionearea-picker .emojionearea-search-panel+.emojionearea-scroll-area{height:206px}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-emojis-list{z-index:1}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-title{display:block;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:13px;font-weight:400;color:#b2b2b2;background:#FFF;line-height:20px;margin:0;padding:7px 0 5px 6px}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block{padding:0 0 0 7px}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block>.emojionearea-category{padding:0!important}.emojionearea .emojionearea-picker .emojionearea-scroll-area [class*=emojione-]{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;margin:0;width:24px;height:24px;top:0}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;width:24px;height:24px;float:left;display:block;margin:1px;padding:3px}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn:hover{-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;background-color:#e4e4e4;cursor:pointer}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn i,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn img{float:left;display:block;width:24px;height:24px}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn img.lazy-emoji{filter:alpha(Opacity=0);opacity:0}.emojionearea .emojionearea-picker.emojionearea-filters-position-top .emojionearea-filters{top:0;-moz-border-radius-topleft:5px;-webkit-border-top-left-radius:5px;border-top-left-radius:5px;-moz-border-radius-topright:5px;-webkit-border-top-right-radius:5px;border-top-right-radius:5px}.emojionearea .emojionearea-picker.emojionearea-filters-position-top.emojionearea-search-position-top .emojionearea-scroll-area{bottom:0}.emojionearea .emojionearea-picker.emojionearea-filters-position-top.emojionearea-search-position-bottom .emojionearea-scroll-area{top:40px}.emojionearea .emojionearea-picker.emojionearea-filters-position-top.emojionearea-search-position-bottom .emojionearea-search-panel{top:initial;bottom:0}.emojionearea .emojionearea-picker.emojionearea-filters-position-bottom .emojionearea-filters{bottom:0;-moz-border-radius-bottomleft:5px;-webkit-border-bottom-left-radius:5px;border-bottom-left-radius:5px;-moz-border-radius-bottomright:5px;-webkit-border-bottom-right-radius:5px;border-bottom-right-radius:5px}.emojionearea .emojionearea-picker.emojionearea-filters-position-bottom.emojionearea-search-position-bottom .emojionearea-scroll-area{top:0}.emojionearea .emojionearea-picker.emojionearea-filters-position-bottom.emojionearea-search-position-bottom .emojionearea-search-panel,.emojionearea .emojionearea-picker.emojionearea-filters-position-bottom.emojionearea-search-position-top .emojionearea-scroll-area{top:initial;bottom:40px}.emojionearea .emojionearea-picker.emojionearea-filters-position-bottom.emojionearea-search-position-top .emojionearea-search-panel{top:0}.emojionearea .emojionearea-picker.emojionearea-picker-position-top{margin-top:-286px;right:-14px}.emojionearea .emojionearea-picker.emojionearea-picker-position-top .emojionearea-wrapper:after{width:19px;height:10px;background-position:-2px -49px;bottom:-10px;right:20px}.emojionearea .emojionearea-picker.emojionearea-picker-position-top.emojionearea-filters-position-bottom .emojionearea-wrapper:after{background-position:-2px -80px}.emojionearea .emojionearea-picker.emojionearea-picker-position-left,.emojionearea .emojionearea-picker.emojionearea-picker-position-right{margin-right:-326px;top:-8px}.emojionearea .emojionearea-picker.emojionearea-picker-position-left .emojionearea-wrapper:after,.emojionearea .emojionearea-picker.emojionearea-picker-position-right .emojionearea-wrapper:after{width:10px;height:19px;background-position:0 -60px;top:13px;left:-10px}.emojionearea .emojionearea-picker.emojionearea-picker-position-left.emojionearea-filters-position-bottom .emojionearea-wrapper:after,.emojionearea .emojionearea-picker.emojionearea-picker-position-right.emojionearea-filters-position-bottom .emojionearea-wrapper:after{background-position:right -60px}.emojionearea .emojionearea-picker.emojionearea-picker-position-bottom{margin-top:10px;right:-14px;top:47px}.emojionearea .emojionearea-picker.emojionearea-picker-position-bottom .emojionearea-wrapper:after{width:19px;height:10px;background-position:-2px -100px;top:-10px;right:20px}.emojionearea .emojionearea-picker.emojionearea-picker-position-bottom.emojionearea-filters-position-bottom .emojionearea-wrapper:after{background-position:-2px -90px}.emojionearea .emojionearea-button.active+.emojionearea-picker{filter:alpha(enabled=false);opacity:1}.emojionearea .emojionearea-button.active+.emojionearea-picker-position-top{margin-top:-269px}.emojionearea .emojionearea-button.active+.emojionearea-picker-position-left,.emojionearea .emojionearea-button.active+.emojionearea-picker-position-right{margin-right:-309px}.emojionearea .emojionearea-button.active+.emojionearea-picker-position-bottom{margin-top:-7px}.emojionearea.emojionearea-standalone{display:inline-block;width:auto;box-shadow:none}.emojionearea.emojionearea-standalone .emojionearea-editor{min-height:33px;position:relative;padding:6px 42px 6px 6px}.emojionearea.emojionearea-standalone .emojionearea-editor::before{content:"";position:absolute;top:4px;left:50%;bottom:4px;border-left:1px solid #e6e6e6}.emojionearea.emojionearea-standalone .emojionearea-editor.has-placeholder .emojioneemoji{opacity:.4}.emojionearea.emojionearea-standalone .emojionearea-button{top:0;right:0;bottom:0;left:0;width:auto;height:auto}.emojionearea.emojionearea-standalone .emojionearea-button>div{right:6px;top:5px}.emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-bottom .emojionearea-wrapper:after,.emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-top .emojionearea-wrapper:after{right:23px}.emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-left .emojionearea-wrapper:after,.emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-right .emojionearea-wrapper:after{top:15px}.emojionearea .emojionearea-button>div,.emojionearea .emojionearea-picker .emojionearea-wrapper:after{background-image:url(data:image/png;base64,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)!important}.emojionearea.emojionearea-standalone .emojionearea-editor.has-placeholder{background-repeat:no-repeat;background-position:20px 4px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMAQMAAABsu86kAAAABlBMVEUAAAC/v79T5hyIAAAAAXRSTlMAQObYZgAAABNJREFUCNdjYGNgQEb/P4AQqiAASiUEG6Vit44AAAAASUVORK5CYII=)!important}
+
+			.inbox_people,.recent_heading{float:left;width:40%}.chat_people,.inbox_msg{overflow:hidden;clear:both}.incoming_msg_img,.received_msg,.srch_bar{display:inline-block}img{max-width:100%}.inbox_people{background:#f8f8f8;overflow:hidden;border-right:1px solid #c4c4c4}.inbox_msg{border:1px solid #c4c4c4}.top_spac{margin:20px 0 0}.srch_bar{text-align:right;width:60%}.headind_srch{padding:10px 29px 10px 20px;overflow:hidden;border-bottom:1px solid #c4c4c4}.recent_heading h4{color:#05728f;font-size:21px;margin:auto}.srch_bar input{border:1px solid #cdcdcd;border-width:0 0 1px;width:80%;padding:2px 0 4px 6px;background:0 0}.srch_bar .input-group-addon button{background:rgba(0,0,0,0);border:none;padding:0;color:#707070;font-size:18px}.srch_bar .input-group-addon{margin:0 0 0 -27px}.chat_ib h5{font-size:15px;color:#464646;margin:0 0 8px}.chat_ib h5 span{font-size:13px;float:right}.chat_ib p{font-size:14px;color:#989898;margin:auto}.chat_img{float:left;width:11%}.chat_ib{float:left;padding:0 0 0 15px;width:88%}.chat_list{border-bottom:1px solid #c4c4c4;margin:0;padding:18px 16px 10px}.inbox_chat{height:550px;overflow-y:scroll}.active_chat{background:#ebebeb}.incoming_msg_img{width:6%}.received_msg{padding:0 0 0 10px;vertical-align:top;width:92%}.received_withd_msg p{background:#ebebeb;border-radius:3px;color:#646464;font-size:14px;margin:0;padding:5px 10px 5px 12px;width:100%}.time_date{color:#747474;display:block;font-size:12px;margin:8px 0 0}.received_withd_msg{width:57%}.mesgs{float:left;padding:30px 15px 0 25px;width:60%}.sent_msg p{background:#05728f;border-radius:3px;font-size:14px;margin:0;color:#fff;padding:5px 10px 5px 12px;width:100%}.outgoing_msg{overflow:hidden;margin:26px 0}.sent_msg{float:right;width:46%}.input_msg_write input{background:rgba(0,0,0,0);border:none;color:#4c4c4c;font-size:15px;min-height:48px;width:100%}.type_msg{border-top:1px solid #c4c4c4;position:relative}.msg_send_btn{background:#05728f;border:none;border-radius:50%;color:#fff;cursor:pointer;font-size:17px;height:33px;position:absolute;right:0;top:11px;width:33px}.messaging{padding:0 0 50px}.msg_history{height:516px;overflow-y:auto}
+</style>
+</head>
+<body <?php if ($pagina == 'index.php' || $pagina == 'registo.php' || $pagina == 'home.php') { ?> style="background: url('https://wallpapersite.com/images/wallpapers/blur-background-3840x2160-spectrum-electromagnetic-4k-901.jpg'); background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center;
+background-size: cover" <?php } ?> >
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="index.php">SiveX</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<?php if (isset($_SESSION['user'])) { ?>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<?php if (isset($_SESSION['user'])) { ?>
 
-							<a class="nav-link" href="home.php">Início <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="home.php">Início <span class="sr-only">(current)</span></a>
 
-						<?php } else { ?>
+				<?php } else { ?>
 
-							<a class="nav-link" href="index.php">Início <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="index.php">Início <span class="sr-only">(current)</span></a>
 
-						<?php } ?>
+				<?php } ?>
 
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="sobre.php">Sobre</a>
-					</li>
-					<?php
-					if (isset($_SESSION['user'])) {
-						?>
-						<li>
-							<form name="pesquisa" method="POST" autocomplete="off">
-								<input id="search_text" type="text" name="search" class="form-control" placeholder="Pesquisar.." onblur="pesquisar(this)">
-							</form>
-							<div style="position: absolute; z-index: 2;" id="result"></div>
-
-
-						</li>
-
-						<?php
-					}
-					?>
-
-				</ul> 
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="sobre.php">Sobre</a>
+			</li>
+			<?php
+			if (isset($_SESSION['user'])) {
+				?>
+				<li>
+					<form name="pesquisa" method="POST" autocomplete="off">
+						<input id="search_text" type="text" name="search" class="form-control" placeholder="Pesquisar.." onblur="pesquisar(this)">
+					</form>
+					<div style="position: absolute; z-index: 2;" id="result"></div>
 
 
-
+				</li>
 
 				<?php
-				if (isset($_SESSION['user'])) {
-					?>
-					<div style="display: inline-block;">
-
-						<i class="far fa-bell"></i><span class="badge badge-light menino"><?php if (isset($_SESSION['notificacao'])) { echo $_SESSION['notificacao']; } ?></span>
-
-
-					</div>
-
-					<?php
-				}
-				?>
-				<div class="dropdown show">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-							<?php
-							if (isset($_SESSION['user'])) {
-								$id = $username = $_SESSION['user'][5];
-								$sel = mysqli_query($link, "SELECT foto FROM users WHERE id='$id'");
-								$info_sel = mysqli_fetch_assoc($sel);
-
-								$foto_header = $info_sel['foto'];
-								if ($foto_header == "imagens/avatar.png") {
-									echo '<i class="fas fa-user"></i>';
-								} else {
-									echo "<img data-src='$foto_header' class='img-responsive rounded-circle lazy_img' alt='Avatar' style='width: 30px;'>";
-
-								}
-							} else {
-								echo '<i class="fas fa-user"></i>';
-							}
-							?>
-
-
-						</button>
-					</a>
-
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-						<?php if (isset($_SESSION['user'])) { 
-
-
-							?>
-
-							<a class="dropdown-item" href="profile.php?id=<?php echo $id; ?>">Perfil</a>
-							<a class="dropdown-item" href="settings.php">Definições</a>
-						<?php } else { ?>
-							<a class="dropdown-item" href="index.php">Login</a>
-							<a class="dropdown-item" href="registo.php">Registo</a>
-						<?php } ?>
-						<div class="dropdown-divider"></div>
-						<?php if (isset($_SESSION['user'])) { ?>
-							<a class="dropdown-item" href="logout.php" style="background-color: #ff2d2dc2;">Sair</a>
-						<?php } else { ?>
-							<a class="dropdown-item" href="#">Sobre</a>
-						<?php } ?>
-					</div>
-				</div>
-			</nav>
-		</div>
-
-		<div class="container" style="padding-top: 2%;">
-			<?php
-			if (isset($_SESSION['erro'])) {
-				echo "<div class='alert alert-danger' role='alert'>
-				".$_SESSION['erro']. "</div>";
-				unset($_SESSION['erro']);
 			}
+			?>
 
-			if (isset($_SESSION['info'])) {
-				echo "<div class='alert alert-primary' role='alert' id='alerta'>
-				".$_SESSION['info']. "</div><script>myvar = setInterval(slidecima, 3000);
-				function slidecima() {
-					$('#alerta').fadeTo(2000, 500).slideUp(500, function(){
-						$('#alerta').slideUp(500);
-						});
-						window.clearInterval(myvar);
+		</ul> 
 
-					}
-					</script>";
-					unset($_SESSION['info']);
-				}
 
-				if (isset($_SESSION['sucesso'])) {
-					echo "<div class='alert alert-success' role='alert' id='alerta'>
-					".$_SESSION['sucesso']. "</div><script>myvar = setInterval(slidecima, 3000);
-					function slidecima() {
-						$('#alerta').fadeTo(2000, 500).slideUp(500, function(){
-							$('#alerta').slideUp(500);
-							});
-							window.clearInterval(myvar);
 
-						}
-						</script>";
-						unset($_SESSION['sucesso']);
-					}
-					?>
+
+		<?php
+		if (isset($_SESSION['user'])) {
+			?>
+			<div style="display: inline-block;">
+
+				<i class="far fa-bell"></i><span class="badge badge-light menino"><?php if (isset($_SESSION['notificacao'])) { echo $_SESSION['notificacao']; } ?></span>
+				<a href="mensagens.php" class="btn btn-dark"><i class="far fa-comments" style="color: white;"></i></a>
+
+			</div>
+
+			<?php
+		}
+		?>
+		<div class="dropdown show">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
 					<?php
 					if (isset($_SESSION['user'])) {
-						?>
-						<div id="alert_popover">
-							<div class="wrapper">
-								<div class="content">
+						$id = $username = $_SESSION['user'][5];
+						$sel = mysqli_query($link, "SELECT foto FROM users WHERE id='$id'");
+						$info_sel = mysqli_fetch_assoc($sel);
 
-								</div>
-							</div>
-						</div>
-						<?php
+						$foto_header = $info_sel['foto'];
+						if ($foto_header == "imagens/avatar.png") {
+							echo '<i class="fas fa-user"></i>';
+						} else {
+							echo "<img data-src='$foto_header' class='img-responsive rounded-circle lazy_img' alt='Avatar' style='width: 30px;'>";
+
+						}
+					} else {
+						echo '<i class="fas fa-user"></i>';
 					}
 					?>
+
+
+				</button>
+			</a>
+
+			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+				<?php if (isset($_SESSION['user'])) { 
+
+
+					?>
+
+					<a class="dropdown-item" href="profile.php?id=<?php echo $id; ?>">Perfil</a>
+					<a class="dropdown-item" href="settings.php">Definições</a>
+				<?php } else { ?>
+					<a class="dropdown-item" href="index.php">Login</a>
+					<a class="dropdown-item" href="registo.php">Registo</a>
+				<?php } ?>
+				<div class="dropdown-divider"></div>
+				<?php if (isset($_SESSION['user'])) { ?>
+					<a class="dropdown-item" href="logout.php" style="background-color: #ff2d2dc2;">Sair</a>
+				<?php } else { ?>
+					<a class="dropdown-item" href="#">Sobre</a>
+				<?php } ?>
+			</div>
+		</div>
+	</nav>
+</div>
+
+<div class="container" style="padding-top: 2%;">
+	<?php
+	if (isset($_SESSION['erro'])) {
+		echo "<div class='alert alert-danger' role='alert'>
+		".$_SESSION['erro']. "</div>";
+		unset($_SESSION['erro']);
+	}
+
+	if (isset($_SESSION['info'])) {
+		echo "<div class='alert alert-primary' role='alert' id='alerta'>
+		".$_SESSION['info']. "</div><script>myvar = setInterval(slidecima, 3000);
+		function slidecima() {
+			$('#alerta').fadeTo(2000, 500).slideUp(500, function(){
+				$('#alerta').slideUp(500);
+				});
+				window.clearInterval(myvar);
+
+			}
+			</script>";
+			unset($_SESSION['info']);
+		}
+
+		if (isset($_SESSION['sucesso'])) {
+			echo "<div class='alert alert-success' role='alert' id='alerta'>
+			".$_SESSION['sucesso']. "</div><script>myvar = setInterval(slidecima, 3000);
+			function slidecima() {
+				$('#alerta').fadeTo(2000, 500).slideUp(500, function(){
+					$('#alerta').slideUp(500);
+					});
+					window.clearInterval(myvar);
+
+				}
+				</script>";
+				unset($_SESSION['sucesso']);
+			}
+			?>
+			<?php
+			if (isset($_SESSION['user'])) {
+				?>
+				<div id="alert_popover">
+					<div class="wrapper">
+						<div class="content">
+
+						</div>
+					</div>
+				</div>
+				<?php
+			}
+			?>

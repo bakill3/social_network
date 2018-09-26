@@ -35,19 +35,19 @@ if (isset($_GET['id'])) {
       <div class="modal-body">
         <?php 
 
-          echo "<div class='row'>";
-          $query_fotos = mysqli_query($link, "SELECT * FROM galeria WHERE id_user='$id_user' ORDER BY id");
-          if (mysqli_num_rows($query_fotos) > 0) {
-            while ($info_fotos = mysqli_fetch_array($query_fotos)) {
-              $src = $info_fotos['foto'];
-              echo "<img data-src='$src' class='zoom img-thumbnail lazy_img' style='padding: 2%; width: 250px; height: 180px;'>";
-            }
-          } else {
-            echo "Este utilizador não tem fotografias";
+        echo "<div class='row'>";
+        $query_fotos = mysqli_query($link, "SELECT * FROM galeria WHERE id_user='$id_user' ORDER BY id");
+        if (mysqli_num_rows($query_fotos) > 0) {
+          while ($info_fotos = mysqli_fetch_array($query_fotos)) {
+            $src = $info_fotos['foto'];
+            echo "<img data-src='$src' class='zoom img-thumbnail lazy_img' style='padding: 2%; width: 250px; height: 180px;'>";
           }
-          echo "</div>";
+        } else {
+          echo "Este utilizador não tem fotografias";
+        }
+        echo "</div>";
 
-      	?>
+        ?>
 
       </div>
 
@@ -123,13 +123,27 @@ if (isset($_GET['id'])) {
             $query56 = mysqli_query($link, "SELECT * FROM seguidores WHERE id_user='$id_user' AND id_seguidor='".$_SESSION['user'][5]."'");
             if (mysqli_num_rows($query56) > 0) {
               ?>
-              <button class="btn btn-lg btn-danger seguir" style="width: 100%;" id="<?php echo $id_user; ?>">Não Seguir <i class="fas fa-user-times"></i></button>
+              <div style="width: 80%;display: inline-block;">
+                <button class="btn btn-lg btn-danger seguir" style="width: 100%;" id="<?php echo $id_user; ?>">Não Seguir <i class="fas fa-user-times"></i></button>
+              </div>
               <?php
             } else { 
               ?>
-              <button class="btn btn-lg btn-primary seguir" style="width: 100%;" id="<?php echo $id_user; ?>">Seguir <i class="fas fa-user-plus"></i></button>
+              <div style="width: 80%;display: inline-block;">
+                <button class="btn btn-lg btn-primary seguir" style="width: 100%;" id="<?php echo $id_user; ?>">Seguir <i class="fas fa-user-plus"></i></button>
+              </div>
               <?php
             }
+            ?>
+            
+            <div style="width: 18%; display: inline-block;">
+              <form method="POST">
+              <!-- <a target="_blank" href="message.php?id=<?php echo $id_user; ?>" class="btn btn-lg btn-warning"><i class="fas fa-comments"></i></a> -->
+                <button type="submit" class="btn btn-lg btn-warning" name="mensagem"><i class="fas fa-comments"></i></button>
+                <input type="hidden" name="user" value="<?php echo $id_user; ?>">
+              </form>
+            </div>
+            <?php
           }
           ?>
           <hr>
@@ -214,44 +228,44 @@ if (isset($_GET['id'])) {
 
 
                   <div class="comments">
-                    <form method="POST" enctype="multipart/form-data">
+                    <form method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
                       <div class="comment-wrap">
                         <!--
                         <div class="photo">
                           <div class="avatar" style="background-image: url('<?php echo $foto_header; ?>')"></div>
                         </div>
                       -->
+                      <div class="comment-block">
+                        <div class="form-group">
+                         <textarea class="form-control emoji" name="post" cols="30" rows="3" placeholder="Publica..."></textarea>
+                       </div>
+                       <input type="file" name="file">
+                       <div class="text-right"> <button type="submit" name="postar" class="btn btn-success btn-lg">Postar <i class="fas fa-check"></i></button> </div>
+
+                     </div>
+
+                   </div>
+                   <input type="hidden" name="hash_perf_19230" value="<?php echo $id_user; ?>">
+                 </form>
+                 <?php 
+
+
+
+                 $query = mysqli_query($link, "SELECT posts.id AS id_post, users.foto AS foto, users.l_nome, users.f_nome, id_perfil, id_user_postou, post, data FROM posts INNER JOIN users ON posts.id_user_postou = users.id WHERE id_perfil='$id_user' ORDER BY data DESC");
+                 if (mysqli_num_rows($query) > 0) {
+                   while ($info_post = mysqli_fetch_array($query)) {
+                    $id_post = $info_post['id_post'];
+                    $foto_post = $info_post['foto'];
+                    $post = $info_post['post'];
+                    $id_user_postou = $info_post['id_user_postou'];
+                    $data = $info_post['data'];
+                    $f_nome = $info_post['f_nome'];
+                    $l_nome = $info_post['l_nome'];
+                    ?>
+
+                    <a href="profile.php?id=<?php echo $id_user_postou; ?>">
+                      <div class="comment-wrap">
                         <div class="comment-block">
-                          <div class="form-group">
-                          	<textarea class="form-control" name="post" cols="30" rows="3" placeholder="Publica..."></textarea>
-                          </div>
-                          <input type="file" name="file">
-                          <div class="text-right"> <button type="submit" name="postar" class="btn btn-success btn-lg">Postar <i class="fas fa-check"></i></button> </div>
-
-                        </div>
-
-                      </div>
-                      <input type="hidden" name="hash_perf_19230" value="<?php echo $id_user; ?>">
-                    </form>
-                    <?php 
-
-
-
-                    $query = mysqli_query($link, "SELECT posts.id AS id_post, users.foto AS foto, users.l_nome, users.f_nome, id_perfil, id_user_postou, post, data FROM posts INNER JOIN users ON posts.id_user_postou = users.id WHERE id_perfil='$id_user' ORDER BY data DESC");
-                    if (mysqli_num_rows($query) > 0) {
-                     while ($info_post = mysqli_fetch_array($query)) {
-                      $id_post = $info_post['id_post'];
-                      $foto_post = $info_post['foto'];
-                      $post = $info_post['post'];
-                      $id_user_postou = $info_post['id_user_postou'];
-                      $data = $info_post['data'];
-                      $f_nome = $info_post['f_nome'];
-                      $l_nome = $info_post['l_nome'];
-                      ?>
-
-                      <a href="profile.php?id=<?php echo $id_user_postou; ?>">
-                        <div class="comment-wrap">
-                          <div class="comment-block">
 
 
                           <div class='photo' style='display: inline-block;'>
@@ -261,65 +275,65 @@ if (isset($_GET['id'])) {
                           <div style='display: inline-block;'>
                             <h5 class='h5_sp'> <?php echo $f_nome." ".$l_nome; ?> </h5>
                           </div>
-                          </a>
-                          <p class="comment-text">
-                           <?php 
-                           echo $post; 
-                           $fotos = mysqli_query($link, "SELECT * FROM galeria WHERE id_post='$id_post'");
-                           if (mysqli_num_rows($fotos) > 0) {
-                            $info_fotos = mysqli_fetch_assoc($fotos);
-                            $foto_gal = $info_fotos['foto'];
-                            echo "<br><div class='text-center'><img data-src='$foto_gal' class='zoom img-thumbnail img-responsive lazy_img' style='width: 400px' alt='Foto'></div>";
-                          }
-                          ?>
-
-                        </p>
-                        <div class="bottom-comment">
-                          <div class="comment-date"><?php echo $data; ?></div>
-                          <ul class="comment-actions">
-                           <?php 
-                           $likes = mysqli_query($link, "SELECT * FROM likes WHERE id_post='$id_post'");
-                           if (mysqli_num_rows($likes) > 0) {
-                            $contagem = mysqli_num_rows($likes);
-                          }
-                          if ($id_user_postou == $_SESSION['user'][5]) {
-                           echo '<li class="complain">
-                           <form method="POST">
-                           <button type="submit" name="apagar" class="btn btn-danger btn-sm">Apagar</button>
-                           <input type="hidden" name="hash_perf_19232" value="'. $id_post. '">
-                           <input type="hidden" name="hash_perf_19234" value="'.$id_user.'">
-                           </form>
-                           </li>';
-                         }
-                         ?>
-
-                         <?php
-                         if (isset($contagem)) {
-                          echo "<span style='font-size: 120%; color: black;' class='font-weight-bold'>". $contagem."</span><i class='fas fa-heart' style='color: #ff5722ed;'></i>";
-                        }
-                        $query_likes = mysqli_query($link, "SELECT * FROM likes WHERE id_post='$id_post' AND id_user='".$_SESSION['user'][5]."'");
-                        if (mysqli_num_rows($query_likes) == 0) {
-                          ?>
-                          <button type="button" class="gostar btn btn-primary" id="<?php echo $id_post; ?>"><i class="far fa-heart"></i></button>
-                          <?php
-                        } else { 
-                          ?>
-                          <button type="button" class="gostar btn btn-primary" id="<?php echo $id_post; ?>"><i class="fas fa-heart"></i></button>
-                          <?php
+                        </a>
+                        <p class="comment-text">
+                         <?php 
+                         echo $post; 
+                         $fotos = mysqli_query($link, "SELECT * FROM galeria WHERE id_post='$id_post'");
+                         if (mysqli_num_rows($fotos) > 0) {
+                          $info_fotos = mysqli_fetch_assoc($fotos);
+                          $foto_gal = $info_fotos['foto'];
+                          echo "<br><div class='text-center'><img data-src='$foto_gal' class='zoom img-thumbnail img-responsive lazy_img' style='width: 400px' alt='Foto'></div>";
                         }
                         ?>
 
-                        <li class="reply">Reply</li>
-                      </ul>
-                    </div>
+                      </p>
+                      <div class="bottom-comment">
+                        <div class="comment-date"><?php echo $data; ?></div>
+                        <ul class="comment-actions">
+                         <?php 
+                         $likes = mysqli_query($link, "SELECT * FROM likes WHERE id_post='$id_post'");
+                         if (mysqli_num_rows($likes) > 0) {
+                          $contagem = mysqli_num_rows($likes);
+                        }
+                        if ($id_user_postou == $_SESSION['user'][5]) {
+                         echo '<li class="complain">
+                         <form method="POST">
+                         <button type="submit" name="apagar" class="btn btn-danger btn-sm">Apagar</button>
+                         <input type="hidden" name="hash_perf_19232" value="'. $id_post. '">
+                         <input type="hidden" name="hash_perf_19234" value="'.$id_user.'">
+                         </form>
+                         </li>';
+                       }
+                       ?>
+
+                       <?php
+                       if (isset($contagem)) {
+                        echo "<span style='font-size: 120%; color: black;' class='font-weight-bold'>". $contagem."</span><i class='fas fa-heart' style='color: #ff5722ed;'></i>";
+                      }
+                      $query_likes = mysqli_query($link, "SELECT * FROM likes WHERE id_post='$id_post' AND id_user='".$_SESSION['user'][5]."'");
+                      if (mysqli_num_rows($query_likes) == 0) {
+                        ?>
+                        <button type="button" class="gostar btn btn-primary" id="<?php echo $id_post; ?>"><i class="far fa-heart"></i></button>
+                        <?php
+                      } else { 
+                        ?>
+                        <button type="button" class="gostar btn btn-primary" id="<?php echo $id_post; ?>"><i class="fas fa-heart"></i></button>
+                        <?php
+                      }
+                      ?>
+
+                      <li class="reply">Reply</li>
+                    </ul>
                   </div>
                 </div>
-                <?php
-              }
+              </div>
+              <?php
             }
-            ?>
+          }
+          ?>
 
 
 
-          </div>
-          <?php include 'footer.php'; ?>
+        </div>
+        <?php include 'footer.php'; ?>
