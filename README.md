@@ -1,4 +1,5 @@
-# Social Network
+# Social Network [![Build Status](https://travis-ci.org/{ORG-or-USERNAME}/{REPO-NAME}.png?branch=master)](https://travis-ci.org/{ORG-or-USERNAME}/{REPO-NAME})
+
 *I started this project on 04/08/2018 for practicing.*
 
 # Official Website
