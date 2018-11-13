@@ -32,6 +32,21 @@ $(document).ready(function(){
 		})
 	}, 500);
 
+
+	$("#publicar").click(function () {
+		var post = $("#message").val();
+		$.ajax({
+			type: "POST",
+			url: "postar.php",
+			data: {post: post},
+			success: function(response){
+				alert(response);
+			}
+		});
+	});
+
+
+
 	function load_last_notification()
 	{
 		$.ajax({
@@ -142,7 +157,7 @@ $(document).ready(function(){
 
 	var pagina = document.location.href.match(/[^\/]+$/)[0];
 
-	if (pagina == 'home.php') {
+	if (pagina == 'home.php' || pagina == 'home2.php') {
 		var start = 0;
 		var limit = 5;
 		var pagina = 1;
@@ -162,7 +177,7 @@ $(document).ready(function(){
 				return;
 
 			$.ajax({
-				url: 'homepage.php',
+				url: 'homepage2.php',
 				method: 'POST',
 				dataType: 'text',
 				data: {
@@ -218,5 +233,31 @@ $(document).ready(function(){
 				load_data();            
 			}
 		});
+
+		function load_data_mensagens(search)
+		{
+			$.ajax({
+				url:"mens_pesquisa.php",
+				method:"post",
+				data:{search:search},
+				success:function(data)
+				{
+					$('#resultado_mensagens').html(data);
+				}
+			});
+		}
+
+		$('#mensagens_text').keyup(function(){
+			var search = $(this).val();
+			if(search != '')
+			{
+				load_data_mensagens(search);
+			}
+			else
+			{
+				load_data_mensagens();            
+			}
+		});
+
 	});
 });

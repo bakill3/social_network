@@ -18,6 +18,8 @@ if (mysqli_num_rows($result) > 0) {
 			$modo = "postou no seu perfil";
 		} elseif ($tipo == "like") {
 			$modo = "gostou da sua publicação";
+		} elseif($tipo == "mensagem") {
+			$modo = "<a href='mensagens.php'>enviou-lhe uma mensagem</a>";
 		} else {
 			$modo = "começou a seguir-te";
 		}

@@ -3,6 +3,10 @@ include 'ligar_db.php';
 
 include_once 'phpmailer/PHPMailerAutoload.php'; //LIVRARIA PHPMAILER
 
+$ip_do_user = $_SERVER['REMOTE_ADDR'];
+
+//echo $ip_do_user;
+
 $data_atual = date("Y-m-d H:i:s");
 //PESQUISA
 if (isset($_POST['search'])) {
@@ -13,20 +17,21 @@ if (isset($_POST['search'])) {
 }
 //REGISTO
 if (isset($_POST['registo'])) {
-	$email = mysqli_real_escape_string($link, $_POST['email']);
-	$f_nome = mysqli_real_escape_string($link, $_POST['f_nome']);
-	$l_nome = mysqli_real_escape_string($link, $_POST['l_nome']);
-	$idade = mysqli_real_escape_string($link, $_POST['idade']); //NUMERIC
-	$username = mysqli_real_escape_string($link, $_POST['username']);
-	$pass1 = mysqli_real_escape_string($link, $_POST['pass_1']);
-	$pass2 = mysqli_real_escape_string($link, $_POST['pass_2']);
+	$email = htmlspecialchars(mysqli_real_escape_string($link, $_POST['email']));
+	$f_nome = htmlspecialchars(mysqli_real_escape_string($link, $_POST['f_nome']));
+	$l_nome = htmlspecialchars(mysqli_real_escape_string($link, $_POST['l_nome']));
+	$idade = htmlspecialchars(mysqli_real_escape_string($link, $_POST['idade'])); //NUMERIC
+	$username = htmlspecialchars(mysqli_real_escape_string($link, $_POST['username']));
+	$pass1 = htmlspecialchars(mysqli_real_escape_string($link, $_POST['pass_1']));
+	$pass2 =htmlspecialchars( mysqli_real_escape_string($link, $_POST['pass_2']));
 
 
 
 
 	if (!empty($email) && !empty($f_nome) && !empty($l_nome) && is_numeric($idade) && !empty($username) && !empty($pass1) && !empty($pass2)) {
 
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		$query_vef = mysqli_query($link, "SELECT * FROM users WHERE email='$email'");
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL) && mysqli_num_rows($query_vef) == 0) {
 
 			$_SESSION['erro'] = "Email Inválido";
 			header('Location: registo.php');
@@ -41,9 +46,9 @@ if (isset($_POST['registo'])) {
 			header('Location: registo.php');
 			exit(0);
 		} else {
-			$query = mysqli_query($link, "SELECT * FROM users WHERE username = '$username'");
+			$query = mysqli_query($link, "SELECT * FROM users WHERE username = '$username' || email='$email'");
 			if (mysqli_num_rows($query) == 1) {
-				$_SESSION['erro'] = "Username já em uso!";
+				$_SESSION['erro'] = "Username/Email em uso!";
 				header('Location: registo.php');
 				exit(0);
 			} else {
@@ -52,25 +57,25 @@ if (isset($_POST['registo'])) {
 				$digitos = 8;
 				$token = rand(pow(10, $digitos-1), pow(10, $digitos)-1);
 
-				mysqli_query($link, "INSERT INTO users (email, f_nome, l_nome, idade, username, password, token) VALUES ('$email', '$f_nome', '$l_nome', '$idade', '$username', '$password', '$token')") or die(mysqli_error($link));
+				mysqli_query($link, "INSERT INTO users (email, f_nome, l_nome, idade, username, password, token, ip, id_estado) VALUES ('$email', '$f_nome', '$l_nome', '$idade', '$username', '$password', '$token', '$ip_do_user', '1')") or die(mysqli_error($link));
 
 				$_SESSION['erro'] = "Confirma a tua conta verificando o teu email";
 
 				
 				$mail = new PHPMailer;
 				$mail->isSMTP();                            // Set mailer to use SMTP
-				$mail->Host = 'smtp.gmail.com';              // Specify main and backup SMTP servers
+				$mail->Host = 'socialsivex.com';              // Specify main and backup SMTP servers
 				$mail->SMTPAuth = true;                     // Enable SMTP authentication
-				$mail->Username = 'YOUR EMAIL'; // your email id
-				$mail->Password = 'YOUR PASSWORD'; // your password
-				$mail->SMTPSecure = 'tls';                  
-				$mail->Port = 587;     //587 is used for Outgoing Mail (SMTP) Server.
-				$mail->setFrom('YOUR EMAIL', 'Sivex Social Network');
+				$mail->Username = 'admin@socialsivex.com'; // your email id
+				$mail->Password = 'Gabriel124'; // your password
+				$mail->SMTPSecure = 'ssl';                  
+				$mail->Port = 465;     //587 is used for Outgoing Mail (SMTP) Server.
+				$mail->setFrom('admin@socialsivex.com', 'Sivex Social Network');
 				$mail->addAddress($email);   // Add a recipient
 				$mail->isHTML(true);  // Set email format to HTML
 
 				$bodyContent = '<h1>Registo com Sucesso</h1>';
-				$bodyContent .= '<p>O seu registo foi completo. Ative agora a sua <a href="http://sivex.zapto.org/verao/ativar.php?token='.$token.'">Conta</a>';
+				$bodyContent .= '<p>O seu registo foi completo. Ative agora a sua <a href="https://socialsivex.com/ativar.php?token='.$token.'">Conta</a>';
 				$mail->Subject = 'Sivex - Registo Concluido';
 				$mail->Body    = $bodyContent;
 				if(!$mail->send()) {
@@ -79,7 +84,7 @@ if (isset($_POST['registo'])) {
 					
 				}
 
-				header('Location: index.php');
+				header('Location: registo.php');
 				exit(0);
 
 			}
@@ -154,6 +159,10 @@ if (isset($_POST['postar'])) {
 		if ($len_post > 0) {
 
 			$post = preg_replace('"\b(https?://\S+)"', '<div class="text-center embed-responsive embed-responsive-21by9"><iframe class="embed-responsive-item" width="425" height="344" src="$1" frameborder="0" title="Video" allowfullscreen></iframe></div></a>', $post);
+			
+
+
+
 
 
 			mysqli_query($link, "INSERT INTO posts (id_user_postou, id_perfil, post, data) VALUES ('$id_user', '$id_perfil', '$post', '$data_atual')") or die(mysqli_error($link));
@@ -181,9 +190,12 @@ if (isset($_POST['postar'])) {
 
 			}
 		}
+		$_SESSION['sucesso'] = "Comentário publicado!";
+	} else {
+		$_SESSION['erro'] = "Preencha o comentário!";
 	}
 
-	$_SESSION['sucesso'] = "Comentário publicado!";
+	
 	header("Location: profile.php?id=".$id_perfil."");
 	exit(0);
 }
@@ -207,6 +219,14 @@ if (isset($_POST['apagar'])) {
 	
 	exit(0);
 
+}
+
+if (isset($_POST['mensagem'])) {
+	$id_user_mensage = mysqli_real_escape_string($link, $_POST['user']);
+	$id_user_mensage2 = mysqli_real_escape_string($link, $_POST['user2']);
+	$_SESSION['mensagem'] = array($id_user_mensage, $id_user_mensage2);
+	header('Location: mensagens.php');
+	exit(0);
 }
 
 ?>

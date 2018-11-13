@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "estudo"
+AuthUserFile "/home/socialsi/.htpasswds/public_html/estudo/passwd"
+require valid-user

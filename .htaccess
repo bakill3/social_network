@@ -48,3 +48,8 @@
 	ExpiresByType application/javascript "access plus 1 year"
 </IfModule>
 
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>

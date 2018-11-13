@@ -1,11 +1,18 @@
 </div>
 
-<script src="jquery.min.js"></script>
-<script src="header.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.js"></script>
+<?php
+if ($pagina != 'index.php') {
+?>
+
+<script src="header.min.js?t=1539395191051"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.js"></script> -->
 <script>
 	$(".emoji").emojioneArea({
 		pickerPosition:"right"
+	});
+	$(document).ready(function(){
+    	$('[data-toggle="tooltip"]').tooltip();   
 	});
 </script>
 <?php
@@ -33,7 +40,7 @@ if (isset($_POST['message'])) {
 		$("#other").val(id);
 		//alert(id);
 	});
-	$('#enviar').keydown(function() {
+	$('#enviar').keydown(function(event) {
 		var message = $("#enviar").val();
 		var other_id = $("#other").val();
 		if (event.keyCode == 13) {
@@ -61,10 +68,26 @@ if (isset($_POST['message'])) {
 		});
 
 	}, 250);
+
+	
 </script>
+<?php
+}
+?>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126697369-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126697369-1');
+</script>
+
 <script src="js/sweetalert.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+
 <script src="lazyload/lazyload.min.js"></script>
+
 <script>
 	new LazyLoad();
 </script>
