@@ -31,7 +31,7 @@ https://socialsivex.com/
   - Good SEO; - SEO
     
 
-![alt text](https://github.com/bakill3/social_network/blob/master/social.png)
+![alt text](https://github.com/bakill3/social_network/blob/master/social2.png)
 
 
 
