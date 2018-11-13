@@ -16,11 +16,19 @@ https://socialsivex.com/
     - Embed WebSite/Videos (iframes);
     - Text;
     - Emojis :smiley:;
+  - Homepage:
+    - User Stats (how many are following the user and how many are people following the user;
+    - Postbox that works with ajax;
+    - Shorcuts to other pages;
+    - Posts using Lazy Loading;
   - Following System; - Ajax/PHP
   - Notification System with Sounds; - Ajax/PHP/JQuery - POST/MESSAGE/FOLLOW/LIKES
   - Real-Time Messages - PHP/AJAX/JQuery
   - Search; - Ajax/PHP
-  - Settings (About/Hobbies/Profile Picture); - PHP
+  - Settings (About/Hobbies/Profile Picture/Relationship Status/Links from other social media to be displayed on the user's profile); - PHP/JS
+  - Fresh Design (Background video and a really good background Image) - CSS/BOOTSTRAP
+  - New Logo; - DESIGN
+  - Good SEO; - SEO
     
 
 ![alt text](https://github.com/bakill3/social_network/blob/master/social.png)
