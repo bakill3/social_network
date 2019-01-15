@@ -174,11 +174,13 @@ color: white; border-radius: 13px;">
 					</div>
 				</div>
 				<div class="col-md-6">
-					<p id="btns">
+					
 					<?php
 					if ($id_user == $_SESSION['user'][5]) {
+						echo '<span id="btns">';
 						?>
 						<a onclick="edit()" id="edit" class="btn btn-lg btn-primary" style="width: 100%;font-family: 'IBM Plex Sans', sans-serif;">Edit Profile <i class="fas fa-pencil-alt"></i></a>
+						echo '</span>';
 						<?php
 					} else {
 
@@ -197,7 +199,6 @@ color: white; border-radius: 13px;">
 							<?php
 						}
 						?>
-						</p>
 						<div style="width: 18%; display: inline-block;">
 							<form method="POST">
 								<!-- <a target="_blank" href="message.php?id=<?php echo $id_user; ?>" class="btn btn-lg btn-warning"><i class="fas fa-comments"></i></a> -->
