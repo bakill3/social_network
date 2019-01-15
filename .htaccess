@@ -1,3 +1,7 @@
+ReWriteEngine On
+RewriteRule ^profile/([^/.]+)?$ profile.php?id=$1 [L]
+RewriteRule ^home([^/.]+)?$ /home.php [L]
+
 <IfModule mod_deflate.c>
   # Compress HTML, CSS, JavaScript, Text, XML and fonts
   AddOutputFilterByType DEFLATE application/javascript
@@ -47,6 +51,9 @@
 	# Javascript
 	ExpiresByType application/javascript "access plus 1 year"
 </IfModule>
+
+
+
 
 
 <Files 403.shtml>

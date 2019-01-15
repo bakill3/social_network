@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
 	$info_user = mysqli_fetch_assoc($query);
 
 	if (mysqli_num_rows($query) == 0) {
-		echo "<script>window.location.href='home.php';</script>";
+		echo "<script>window.location.href='home';</script>";
 	}
 	$email = $info_user['email'];
 	$nome = $info_user['f_nome'];
@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
 
 			<!-- Modal Header -->
 			<div class="modal-header">
-				<h4 class="modal-title">Fotos de <?php echo $nome." ".$apelido; ?></h4>
+				<h4 class="modal-title postbi">Pictures of <?php echo $nome." ".$apelido; ?></h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 
@@ -88,7 +88,8 @@ color: white; border-radius: 13px;">
 
 	<img data-src="<?php echo $foto; ?>" class="lazy_img" style="width: 250px; border-radius: 50%; height: 250px;" alt="avatar zoom">
 	<br>
-	<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-outline-success"><i class="far fa-images"></i> Fotos</a><br>
+	<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-outline-success postbi" style="margin-top: 5%;
+	margin-bottom: 2%;"><i class="far fa-images"></i> Pictures</a><br>
 	<?php
 	if (!empty($facebook)) {
 		echo "
@@ -124,28 +125,27 @@ color: white; border-radius: 13px;">
 	<div class="tab-content p-b-3">
 		<div class="tab-pane active" id="profile">
 			<div style="display: inline-block;">
-				<h4 class="m-y-2 nome" id="<?php echo $nome." ".$apelido; ?>"><?php echo $nome." ".$apelido; ?></h4>
+				<h4 class="m-y-2 nome" id="<?php echo $nome." ".$apelido; ?>" style="font-family: 'IBM Plex Sans', sans-serif;"><?php echo "<span id='f_name'>".$nome."</span><span id='l_name'> ".$apelido."</span>"; ?></h4>
 			</div>
 			<div style="display: inline-block; padding-left: 1%; color: #ff0000cf;">
 				<h6><span class="badge badge-danger" style="font-size: 100%;">@<?php echo $username; ?></span></h6>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<span class="text-muted">Sobre</span>
+					<span class="text-muted" style="font-family: 'IBM Plex Sans', sans-serif;">About</span>
 					<div style="margin-left: 5%;">
-						<p>
-							<?php echo $sobre; ?>
-						</p>
+						<p style="font-family: 'IBM Plex Sans', sans-serif;" id="sobre"><?php echo $sobre; ?></p>
 					</div>
-					<span class="text-muted">Estado Civil</span>
+					<span class="text-muted" style="font-family: 'IBM Plex Sans', sans-serif;">Relationship Status</span>
 					<div style="margin-left: 5%;">
 						<?php
 						$estado_query = mysqli_query($link, "SELECT * FROM estado_civil WHERE id_estado='$id_estado'");
 						$info_estado = mysqli_fetch_assoc($estado_query);
-						echo "<span class='badge badge-success'>".$info_estado['estado']."</span>";
+						echo "<input type='hidden' id='id_estado' value='$id_estado'>";
+						echo "<span class='badge badge-success' id='estado'>".$info_estado['estado']."</span>";
 						?>
 					</div>
-					<span class="text-muted">Hobbies</span>
+					<span class="text-muted" style="font-family: 'IBM Plex Sans', sans-serif;">Hobbies</span>
 					<div style="margin-left: 5%;">
 						<p>
 							<?php 
@@ -153,9 +153,9 @@ color: white; border-radius: 13px;">
 							$conta_hobbies = mysqli_num_rows($query);
 							$i_hobbie = 1;
 							if ($conta_hobbies == 0) {
-								echo "$nome não tem hobbies.";
+								echo "$nome doesn't have hobbies.";
 							} else {
-								echo "$nome gosta de ";
+								echo "<span style='font-family: 'IBM Plex Sans', sans-serif;'>$nome likes to </span>";
 								while ($info_hob = mysqli_fetch_array($query)) {
 									$badges=array("primary", "warning", "info", "light", "secondary", "danger");
 									$hobbie = $info_hob['hobbie'];
@@ -174,10 +174,11 @@ color: white; border-radius: 13px;">
 					</div>
 				</div>
 				<div class="col-md-6">
+					<p id="btns">
 					<?php
 					if ($id_user == $_SESSION['user'][5]) {
 						?>
-						<a href="settings.php" class="btn btn-lg btn-primary" style="width: 100%;">Editar Perfil <i class="fas fa-pencil-alt"></i></a>
+						<a onclick="edit()" id="edit" class="btn btn-lg btn-primary" style="width: 100%;font-family: 'IBM Plex Sans', sans-serif;">Edit Profile <i class="fas fa-pencil-alt"></i></a>
 						<?php
 					} else {
 
@@ -185,67 +186,85 @@ color: white; border-radius: 13px;">
 						if (mysqli_num_rows($query56) > 0) {
 							?>
 							<div style="width: 80%;display: inline-block;">
-								<button class="btn btn-lg btn-danger seguir" style="width: 100%;" id="<?php echo $id_user; ?>">Não Seguir <i class="fas fa-user-times"></i></button>
+								<button class="btn btn-lg btn-danger seguir" style="width: 100%;font-family: 'IBM Plex Sans', sans-serif;" id="<?php echo $id_user; ?>">Unfollow <i class="fas fa-user-times"></i></button>
 							</div>
 							<?php
 						} else { 
 							?>
 							<div style="width: 80%;display: inline-block;">
-								<button class="btn btn-lg btn-primary seguir" style="width: 100%;" id="<?php echo $id_user; ?>">Seguir <i class="fas fa-user-plus"></i></button>
+								<button class="btn btn-lg btn-primary seguir" style="width: 100%;font-family: 'IBM Plex Sans', sans-serif;" id="<?php echo $id_user; ?>">Follow <i class="fas fa-user-plus"></i></button>
 							</div>
 							<?php
 						}
 						?>
-
+						</p>
 						<div style="width: 18%; display: inline-block;">
 							<form method="POST">
 								<!-- <a target="_blank" href="message.php?id=<?php echo $id_user; ?>" class="btn btn-lg btn-warning"><i class="fas fa-comments"></i></a> -->
 								<button type="submit" class="btn btn-lg btn-warning" name="mensagem"><i class="fas fa-comments"></i></button>
-								<input type="hidden" name="user" value="<?php echo $id_user; ?>">
-								<input type="hidden" name="user2" value="<?php echo $foto; ?>">
+								<input type="hidden" name="user_id" value="<?php echo $id_user; ?>">
+								<input type="hidden" name="user_photo" value="<?php echo $foto; ?>">
+								<input type="hidden" name="user_nome" value="<?php echo $nome; ?>">
+								<input type="hidden" name="user_apelido" value="<?php echo $apelido; ?>">
 							</form>
 						</div>
 						<?php
 					}
 					?>
+					
+
 					<hr>
 					<?php
 
 					$query555 = mysqli_query($link, "SELECT * FROM seguidores WHERE id_user='$id_user'");
-
+					$query_2 = mysqli_query($link, "SELECT * FROM seguidores WHERE id_seguidor='$id_user'");
+					$date = mysqli_query($link, "SELECT * FROM anonymous WHERE id_user='$id_user' AND tipo='date'");
+					$make_out = mysqli_query($link, "SELECT * FROM anonymous WHERE id_user='$id_user' AND tipo='make_out'");
 					?>
-					<span class="tag tag-primary seguidores" id="<?php echo mysqli_num_rows($query555); ?>"><i class="fa fa-user" style="color: #007bff;"></i> <?php echo mysqli_num_rows($query555); ?> Seguidores</span>
-					<span class="tag tag-success"><i class="fa fa-cog" style="color: #007bff;"></i> 43 Estrelas</span>
-					<span class="tag tag-danger"><i class="fa fa-eye" style="color: #007bff;"></i> 245 Views</span>
-				</div>
+					<div class="text-center">
+					<span class="tag tag-success lead" style="font-family: 'IBM Plex Sans', sans-serif;
+					"><i class="fa fa-user" style="color: #007bff;"></i> <?php echo mysqli_num_rows($query_2); ?> Following</span>
+					<span class="tag tag-primary seguidores lead" style="/*padding-left: 8%;*/ font-family: 'IBM Plex Sans', sans-serif;
+					" id="<?php echo mysqli_num_rows($query555); ?>"><i class="fas fa-users" style="color: #007bff;"></i> <?php echo mysqli_num_rows($query555); ?> Followers</span>
+					<br>
+					<span class="lead makei" style="/*padding-left: 8%;*/ font-family: 'IBM Plex Sans', sans-serif;
+					" id="<?php echo mysqli_num_rows($make_out); ?>"><i class="fas fa-bookmark" style="color: #007bff;"></i> <?php echo mysqli_num_rows($make_out); ?> Make Outs</span>
+
+					<span class="lead datei" style="/*padding-left: 8%;*/ font-family: 'IBM Plex Sans', sans-serif;
+					" id="<?php echo mysqli_num_rows($date); ?>"><i class="fas fa-heart" style="color: #007bff;"></i> <?php echo mysqli_num_rows($date); ?> Dates</span>
+					</div>
+					<?php 
+					if ($id_user != $_SESSION['user'][5]) {
+					?>
+					<hr>
+					<div class="text-center postbi lead"><i class="fal fa-user-secret" style="
+					color: #007bff;
+					"></i> Anonymous Actions:</div>
+					<?php
+					$make_out_ver = mysqli_query($link, "SELECT * FROM anonymous WHERE id_user='$id_user' AND id_seguidor='".$_SESSION['user'][5]."' AND tipo='make_out'");
+					if (mysqli_num_rows($make_out_ver) == 0) {
+						$make_out_text = "Make Out";
+					} else {
+						$make_out_text = "Stop Making Out";
+					}
+
+					$date_ver = mysqli_query($link, "SELECT * FROM anonymous WHERE id_user='$id_user' AND id_seguidor='".$_SESSION['user'][5]."' AND tipo='date'");
+					if (mysqli_num_rows($date_ver) == 0) {
+						$date_text = "Date";
+					} else {
+						$date_text = "Stop Dating";
+					}
+					?>
+					<div class="text-center postbi">
+						<button type="button" class="btn btn-sm btn-primary make_out" style="display: inline-block;" id="<?php echo $id_user; ?>"><?php echo $make_out_text; ?></button>
+						<button type="button" class="btn btn-sm btn-info date" style="display: inline-block;" id="<?php echo $id_user; ?>"><?php echo $date_text; ?></button>
+					</div>
+					
+					
 				<?php
-				/*
-				if (!empty($facebook)) {
-					echo "
-					<div style='display: inline-block;'>
-					<a class='btn' href='$facebook' target='_blank'><i class='fab fa-facebook'></i></a>
-					</div>
-					";
 				}
-
-				if (!empty($instagram)) {
-					echo "
-					<div style='display: inline-block;'>
-					<a class='btn' href='$instagram' target='_blank'><i class='fab fa-instagram'></i></a>
-					</div>
-					";
-				}
-
-				if (!empty($twitter)) {
-					echo "
-					<div style='display: inline-block;'>
-					<a class='btn' href='$twitter' target='_blank'><i class='fab fa-twitter'></i></a>
-					</div>
-					";
-				}
-				*/
-
 				?>
+				</div>
 				<div class="col-md-12">
                             <!--
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
@@ -332,9 +351,9 @@ color: white; border-radius: 13px;">
 
                     	<div class="custom-file">
                     		<input type="file" class="custom-file-input" id="validatedCustomFile" name="file">
-                    		<label class="custom-file-label" for="validatedCustomFile">Imagem ou GIF...</label>
+                    		<label class="custom-file-label" for="validatedCustomFile">Picture or GIF..</label>
                     	</div>
-                    	<div class="text-right" style="padding-top: 1%;"> <button type="submit" name="postar" class="btn btn-success btn-lg">Postar <i class="fas fa-check"></i></button> </div>
+                    	<div class="text-right" style="padding-top: 1%;"> <button type="submit" name="postar" class="btn btn-success btn-lg">Post <i class="fas fa-check"></i></button> </div>
 
                     </div>
 
@@ -361,7 +380,7 @@ color: white; border-radius: 13px;">
 
 
 
-            		<a href="profile.php?id=<?php echo $id_user_postou; ?>">
+            		<a href="profile/<?php echo $id_user_postou; ?>">
             			<div class="comment-wrap">
             				<div class="comment-block" style="box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.8); position: relative;">
 
@@ -383,7 +402,7 @@ color: white; border-radius: 13px;">
             						<h5 class='h5_sp'> <?php echo $f_nome." ".$l_nome; ?> </h5>
             					</div>
             				</a>
-            				<p class="comment-text" style="color: black;">
+            				<p class="comment-text" style="color: black; font-family: 'IBM Plex Sans', sans-serif;">
             					<?php 
             					echo $post; 
             					$fotos = mysqli_query($link, "SELECT * FROM galeria WHERE id_post='$id_post'");

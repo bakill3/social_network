@@ -1,0 +1,33 @@
+Recomecei a mexer no site outra vez após ter feito uma pausa (RDR2 :D).
+
+DESDE 13/11/2018:
+  - Dividi o website em duas secções (EN/PT);
+  - Traduzi o website todo para inglês;
+  - Resolvi bastantes bugs e melhorei algum design;
+  - Melhorei as mensagens (aparece a imagem e o nome [badge com cor aleatória em PHP e também em jQuery] do user que se carrega);
+  - Melhorei design nas mensagens;
+  - Eliminei as "views e estrelas" do perfil e adicionei os followers/&/following no perfil;
+  - Mudei maior parte das fontes do website;
+  - Melhorei a publicação de embed youtube videos (agora basta meter um link normal);
+  - Melhorei a pesquisa (mostra para visitar o perfil e para mandar mensagem direta);
+  - Adicionei ao perfil a opção de o utilizador demonstrar vontade de fazer make out ou namorar com outro utilizador de forma anónima;
+  - PopOver na imagem de perfil num post onde mostra mais informações sobre esse utilizador;
+  - (...);
+
+
+
+
+
+
+  - Divided the website in 2 languages (EN/PT);
+  - Fixed a lot of bugs and improved design;
+  - Improved messages (Show user photo and name [badge with random color in PHP amd jQuery]);
+  - Improved messaging system script;
+  - Deleted "views" and "estrelas" from profile and added followers/&/following in the profile;
+  - All website Fonts changed;
+  - You can now fully post youtube videos by just putting the link;
+  - Better search (option to visit the profile and send direct message);
+  - Added anonymous actions (you can now "make out"/"date" a user and will change the number on their profile [simillar to likes and tinder])
+  - PopOver post (showing all the info about the user);
+  - Changed theme of the website to dark;
+  - A LOT of improvements a bugs fixed;

@@ -85,31 +85,31 @@ if (isset($_POST['mudar_info'])) {
         
     }
     ?>
-    <div style="background-color: #f0f2fa; padding: 3%; border-radius: 2%;">
-    	<form method="POST" enctype="multipart/form-data">
-    		<h2 class="text-center">Definições</h2>
+    <div style="background-color: #f0f2fa; padding: 3%; border-radius: 2%;" class="postbi">
+    	<form method="POST" enctype="multipart/form-data"> 
+    		<h2 class="text-center">Settings</h2>
     		<hr>
     		<div class="form-group">
     			<label>Email</label>
     			<input type="email" name="email" class="form-control" value="<?php echo $_SESSION['user'][0]; ?>">
     		</div>
     		<div class="form-group">
-    			<label>Nome</label>
+    			<label>First Name</label>
     			<input type="text" name="f_nome" class="form-control emoji" value="<?php echo $_SESSION['user'][1]; ?>">
     		</div>
     		<div class="form-group">
-    			<label>Apelido</label>
+    			<label>Surname</label>
     			<input type="text" name="l_nome" class="form-control emoji" value="<?php echo $_SESSION['user'][2]; ?>">
     		</div>
     		<div class="form-group">
-    			<label>Sobre</label>
+    			<label>About</label>
     			<textarea class="form-contol emoji" name="sobre" style="width: 100%;"><?php echo $sobre; ?></textarea>
     		</div>
     		<table class="table table-striped table-dark">
     			<thead>
     				<tr>
     					<td>Hobbie</td>
-    					<td>Ativo</td>
+    					<td>Active</td>
     				</tr>
     			</thead>
     			<tbody>
@@ -134,20 +134,20 @@ if (isset($_POST['mudar_info'])) {
     		</table>
 
     		<div class="form-group">
-    			<label>Link do teu Facebook...</label>
+    			<label>Facebook Link...</label>
     			<input type="text" name="facebook" class="form-control" value="<?php echo $facebook; ?>">
     		</div>
     		<div class="form-group">
-    			<label>Link do teu Instagram...</label>
+    			<label>Instagram Link...</label>
     			<input type="text" name="instagram" class="form-control" value="<?php echo $instagram; ?>">
     		</div>
     		<div class="form-group">
-    			<label>Link do teu Twitter...</label>
+    			<label>Twitter Link...</label>
     			<input type="text" name="twitter" class="form-control" value="<?php echo $twitter; ?>">
     		</div>
 
             <div class="form-group">
-                <label for="exampleFormControlSelect1">Estado Civil</label>
+                <label for="exampleFormControlSelect1">Relationship Status</label>
                 <select class="form-control" id="exampleFormControlSelect1" name="estado_civil">
                   <?php
                   $estado_query = mysqli_query($link, "SELECT * FROM estado_civil");
@@ -170,7 +170,7 @@ if (isset($_POST['mudar_info'])) {
     			<input type="file" name="file">
     		</div>
     		<br>
-    		<input type="submit" name="mudar_info" class="btn btn-primary btn-lg" style="width: 100%;" value="Alterar Dados">
+    		<input type="submit" name="mudar_info" class="btn btn-primary btn-lg" style="width: 100%;" value="Update Info">
     	</form>
     </div>
     <?php include 'footer.php'; ?>

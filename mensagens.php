@@ -9,10 +9,10 @@ $query = mysqli_query($link, "SELECT * FROM users");
 
 ?>
 <h3 class=" text-center display-4 text-white" style="background-color: black;
-    opacity: 0.8;">Mensagens</h3>
+    opacity: 0.8;">Messages</h3>
 <div class="messaging">
   <div class="inbox_msg">
-    <div class="inbox_people">
+    <div class="inbox_people postbi">
       <div class="headind_srch">
         <div class="recent_heading">
           <h4>Recentes</h4>
@@ -28,19 +28,6 @@ $query = mysqli_query($link, "SELECT * FROM users");
 
         <div class="inbox_chat" id="resultado_mensagens">
           
-          <!--
-          <div class="chat_list active_chat">
-            <div class="chat_people">
-              <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-              <div class="chat_ib">
-                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                <p>Test, which is a new approach to have all solutions 
-                astrology under one roof.</p>
-              </div>
-            </div>
-
-          </div>
-          -->
           <?php
           while ($info_user = mysqli_fetch_array($query)) {
             $id_user = $info_user['id'];
@@ -52,17 +39,12 @@ $query = mysqli_query($link, "SELECT * FROM users");
             $sobre = $info_user['sobre'];
             $foto = $info_user['foto'];
 
-            /*
-            echo "<button class='btn btn-dark mudarp' value='$id_user'><div class='photo' style='display: inline-block;'>
-            <img class='avatar zoom' src='$foto' alt='$nome $apelido'>
-            </div>".$nome." ".$apelido."</button><br>";
-            echo "<input type='hidden' id='mudarc' value='$id_user'>";
-            */
+
             echo "<a class='mudarp' id='$id_user'><div class='chat_list' id='chat_list_$id_user'>
             <div class='chat_people'>
-            <div class='chat_img'> <img src='$foto' alt='$nome $apelido'> </div>
+            <div class='chat_img'> <img src='$foto' alt='$nome $apelido' id='foto_user_$id_user'> </div>
             <div class='chat_ib'>
-            <h5>$nome $apelido <span class='chat_date'>Dec 25</span></h5>
+            <h5><span id='nome_$id_user' style='float: none; font-size: 15px;'>$nome</span> <span id='apelido_$id_user' style='float: none; font-size: 15px;'>$apelido</span> <span class='chat_date'>Dec 25</span></h5>
             <p>$sobre</p>
             </div>
             </div>
@@ -71,29 +53,36 @@ $query = mysqli_query($link, "SELECT * FROM users");
 
           }
           ?>
-          <!--
-          <div class='chat_list'>
-            <div class='chat_people'>
-              <div class='chat_img'> <img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> </div>
-              <div class='chat_ib'>
-                <h5>Sunil Rajput <span class='chat_date'>Dec 25</span></h5>
-                <p>Test, which is a new approach to have all solutions 
-                astrology under one roof.</p>
-              </div>
-            </div>
-          </div>
-        -->
-
 
         </div>
       </div>
-      <div class="mesgs">
-        <div class="msg_history mensagens">
+      <div class="mesgs" style="position: relative;">
+        <div style="
+    width: 100%;
+    background: rgba(30, 40, 51, 1);
+    position: absolute;
+    height: 100px;
+    color: white !important;
+    font-size: 20px;
+    /* opacity: .77; */
+">
+<?php
+$badges=array("primary", "warning", "info", "secondary", "danger", "success", "light", "dark");
+//<?php echo $badges[array_rand($badges)];
+?>
+       <a id="a_putas" href="profile/<?php if (isset($_SESSION['mensagem'])) { echo $_SESSION['mensagem'][0]; } else { echo $id_user; } ?>"><img id="main_imagem" src="<?php if (isset($_SESSION['mensagem'])) { echo $_SESSION['mensagem'][1]; } else { echo $foto; } ?>" style="width: 15%; height: 100%;"> 
+
+        <span id="badgezinho" class="badge badge-<?php echo $badges[array_rand($badges)]; ?>">
+       <span id="main_nome"><?php if (isset($_SESSION['mensagem'])) { echo $_SESSION['mensagem'][2]; } else { echo $nome; } ?></span> <span id="main_apelido"><?php if (isset($_SESSION['mensagem'])) { echo $_SESSION['mensagem'][3]; } else { echo $apelido; } ?></span></span></a>
+    </div>
+
+        <div class="msg_history mensagens" style="margin-top: 100px; height: 430px !important;">
+
          
                   </div>
                   <div class="type_msg">
                     <div class="input_msg_write">
-                      <textarea id="enviar" type="text" class="form-control" placeholder="Type a message" /></textarea>
+                      <textarea id="enviar" type="text" class="form-control" placeholder="Type a message [ENTER]" /></textarea>
                       <input type="hidden" id="other" value="<?php if (isset($_SESSION['mensagem'])) { echo $_SESSION['mensagem'][0]; unset($_SESSION['mensagem']); } else { echo $id_user; } ?>">
                     </div>
                   </div>

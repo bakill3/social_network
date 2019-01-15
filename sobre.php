@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-<div class="card" style="width: 18rem; margin: 0 auto;">
+<div class="card postbi" style="width: 18rem; margin: 0 auto;">
   <img class="card-img-top" src="gabriel.jpg" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">Gabriel Brandão</h5>

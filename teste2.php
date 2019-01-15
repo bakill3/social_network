@@ -15,13 +15,29 @@ if (mysqli_num_rows($result) > 0) {
 
 		$href = "profile.php?id=".$_SESSION['user'][5]."";
 		if ($tipo == "post") {
-			$modo = "postou no seu perfil";
+			$modo = "posted on your profile";
 		} elseif ($tipo == "like") {
-			$modo = "gostou da sua publicação";
+			$modo = "liked your post";
 		} elseif($tipo == "mensagem") {
-			$modo = "<a href='mensagens.php'>enviou-lhe uma mensagem</a>";
+			echo "<script>
+			if($('#msm_".$id_user_notificacao."').length) {
+				
+			} else {
+				var btns = Array('primary', 'warning', 'info', 'default', 'success', 'dark');
+				var rand_btn = btns[Math.floor(Math.random()*btns.length)];
+				$('#mensagens_dinamicas').append('<div class=\"col-md-2\" style=\"display: inline-block;\" id=\"msm_".$id_user_notificacao."\"><div class=\"panel-collapse collapse\" id=\"collapse_".$id_user_notificacao."\" style=\"    border-left: 1px solid;border-right: 1px solid;border-top: 1px solid; background-color: white;\"><div class=\"panel-body\" style=\"padding: 5%;\"><ul class=\"chat mensagens_new\"></ul></div><div class=\"panel-footer\"><div class=\"input-group\"><textarea id=\"enviar\" type=\"text\" class=\"form-control input-sm \" placeholder=\"Fala com ".$row["f_nome"]." ".$row["l_nome"]."...\"></textarea><span class=\"input-group-btn\"><button class=\"btn btn-warning btn-sm\" id=\"btn-chat\" style=\"height: 100%;\"><i class=\"fas fa-comment\"></i></button></span></div></div></div><div class=\"panel panel-primary\"><div class=\"panel-heading\" id=\"accordion\"><div class=\"btn-group pull-right\" style=\"width: 100%;\"><a type=\"button\" style=\"width: 100%;\" class=\"btn btn-'+ rand_btn +' btn-xs\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse_".$id_user_notificacao."\">".$row["f_nome"]." ".$row["l_nome"]."</a><button type=\"button\" id=\"fechar_".$id_user_notificacao."\" style=\"padding-left: 90%;\">X</button></div></div></div></div>');
+				
+				$('#fechar_".$id_user_notificacao."').click(function(){
+			        $('#msm_".$id_user_notificacao."').remove();
+			    });
+				//$('#body').html(box);
+			}
+			
+			
+			</script>";
+			$modo = "<a href='mensagens.php'>sent you a message</a>";
 		} else {
-			$modo = "começou a seguir-te";
+			$modo = "started following you";
 		}
 		$output .= '
 		<script>

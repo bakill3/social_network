@@ -6,7 +6,7 @@ if (isset($_POST['getData'])) {
         $start = mysqli_real_escape_string($link, $_POST['start']);
         $limit = mysqli_real_escape_string($link, $_POST['limit']);
 
-        $query = mysqli_query($link, "SELECT posts.id AS id_post, users.foto AS foto, users.f_nome as f_nome, users.l_nome as l_nome, users.id as id_user, id_perfil, id_user_postou, post, data, username FROM posts INNER JOIN users ON posts.id_user_postou = users.id ORDER BY RAND()");
+        $query = mysqli_query($link, "SELECT posts.id AS id_post, users.foto AS foto, users.f_nome as f_nome, users.l_nome as l_nome, users.id as id_user, id_perfil, id_user_postou, post, data, username, sobre FROM posts INNER JOIN users ON posts.id_user_postou = users.id ORDER BY RAND()");
 
         if (mysqli_num_rows($query) > 0) {
                 $response = "";
@@ -22,6 +22,14 @@ if (isset($_POST['getData'])) {
                         $id_user = $info_post['id_user'];
                         $id_perfil = $info_post['id_perfil'];
                         $username = $info_post['username'];
+                        $sobre = $info_post['sobre'];
+
+                        //POPOVER INFO -----
+                        $query_555 = mysqli_query($link, "SELECT * FROM seguidores WHERE id_user='$id_user'");
+                        $query_2 = mysqli_query($link, "SELECT * FROM seguidores WHERE id_seguidor='$id_user'");
+                        $date = mysqli_query($link, "SELECT * FROM anonymous WHERE id_user='$id_user' AND tipo='date'");
+                        $make_out = mysqli_query($link, "SELECT * FROM anonymous WHERE id_user='$id_user' AND tipo='make_out'");
+                        //------------------
 
                         $fotos = mysqli_query($link, "SELECT * FROM galeria WHERE id_post='$id_post'");
                         if (mysqli_num_rows($fotos) > 0) {
@@ -66,21 +74,33 @@ if (isset($_POST['getData'])) {
                                 
                         }
 
+                        $content = '<div class="text-center postbi" style="color: white;"><img src="'.$foto_post.'" style="width: 200px; height: 200px;"><hr>
+                        <span class="tag tag-success"><i class="fa fa-user" style="color: #007bff;"></i> '.mysqli_num_rows($query_2).' Following</span>
+                                        <span class="tag tag-primary seguidores " id="'.mysqli_num_rows($query_555).'"><i class="fas fa-users" style="color: #007bff;"></i> '.mysqli_num_rows($query_555).' Followers</span>
+                                        <br>
+                                        <span class="makei" id="'.mysqli_num_rows($make_out).'"><i class="fas fa-bookmark" style="color: #007bff;"></i> '.mysqli_num_rows($make_out).' Make Outs</span>
+
+                                        <span class=" datei" id="'.mysqli_num_rows($date).'"><i class="fas fa-heart" style="color: #007bff;"></i> '.mysqli_num_rows($date).' Dates</span>
+                                        <hr>
+                                        About: '.$sobre.'
+                                        </div>
+                        ';
+
                         $response .= "
                         <div class='card gedf-card' style='padding-top: 1%; padding-bottom: 1%;'>
                         <div class='card-header'>
                         <div class='d-flex justify-content-between align-items-center'>
-                        <a href='profile.php?id=$id_user'>
+                        <a href='profile/$id_user'> 
                                 <div class='d-flex justify-content-between align-items-center'>
                                 <div class='mr-2'>
-                                <img class='rounded-circle zoom' width='45' src='$foto_post' alt=''>
+                                <span title='<div class=\"text-center postbi\" > $f_nome $l_nome </div>' data-toggle='popover' data-trigger='hover' data-content='$content' data-placement='left' data-html='true'><img class='rounded-circle zoom' width='45' src='$foto_post' alt='' style='max-height: 50px;'></span>
                                 </div>
-                                <div class='ml-2'>
+                                <div class='ml-2 postbi'>
                                 <div class='h5 m-0'>@".$username."</div>
                                 <div class='h7 text-muted'>$f_nome $l_nome</div>
                                 </div>
                                 </div>
-                        </a>
+                       </a> 
                         <div>
 
                         $apagar
@@ -92,7 +112,7 @@ if (isset($_POST['getData'])) {
                         </div>
                         <div class='card-body'>
                         <div class='text-muted h7 mb-2'> <i class='fa fa-clock-o'></i>$data</div>
-                        <p class='card-text'>
+                        <p class='card-text postbi'>
                         $post
                         $foto_p
                         </p>
@@ -102,6 +122,11 @@ if (isset($_POST['getData'])) {
                         $contagem_p
                         </div>
                         </div>
+                        <script>
+                        $(document).ready(function(){
+                            $('[data-toggle=\"popover\"]').popover();   
+                        });
+                        </script>
                         ";
                 }
 

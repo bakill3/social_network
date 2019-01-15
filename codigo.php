@@ -33,22 +33,22 @@ if (isset($_POST['registo'])) {
 		$query_vef = mysqli_query($link, "SELECT * FROM users WHERE email='$email'");
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL) && mysqli_num_rows($query_vef) == 0) {
 
-			$_SESSION['erro'] = "Email Inválido";
+			$_SESSION['erro'] = "Invalid Email";
 			header('Location: registo.php');
 			exit(0);
 
 		} elseif($idade < 13) {
-			$_SESSION['erro'] = "Tem de ter pelo menos 13 anos para se registar";
+			$_SESSION['erro'] = "You must be at least 13 years old.";
 			header('Location: registo.php');
 			exit(0);
 		} elseif($pass1 != $pass2) {
-			$_SESSION['erro'] = "As passwords não correspondem!";
+			$_SESSION['erro'] = "Password don't match!";
 			header('Location: registo.php');
 			exit(0);
 		} else {
 			$query = mysqli_query($link, "SELECT * FROM users WHERE username = '$username' || email='$email'");
 			if (mysqli_num_rows($query) == 1) {
-				$_SESSION['erro'] = "Username/Email em uso!";
+				$_SESSION['erro'] = "Username/Email in use!";
 				header('Location: registo.php');
 				exit(0);
 			} else {
@@ -59,7 +59,7 @@ if (isset($_POST['registo'])) {
 
 				mysqli_query($link, "INSERT INTO users (email, f_nome, l_nome, idade, username, password, token, ip, id_estado) VALUES ('$email', '$f_nome', '$l_nome', '$idade', '$username', '$password', '$token', '$ip_do_user', '1')") or die(mysqli_error($link));
 
-				$_SESSION['erro'] = "Confirma a tua conta verificando o teu email";
+				$_SESSION['erro'] = "Confirm your account via email.";
 
 				
 				$mail = new PHPMailer;
@@ -92,7 +92,7 @@ if (isset($_POST['registo'])) {
 		}
 
 	} else {
-		$_SESSION['erro'] = "Preencha todos os dados!";
+		$_SESSION['erro'] = "Fill all the inputs!";
 		header('Location: registo.php');
 		exit(0);
 	}
@@ -128,20 +128,20 @@ if (isset($_POST['login'])) {
 				header('Location: home.php');
 				exit(0);
 			} else {
-				$_SESSION['erro'] = "Ative a sua conta pelo email.";
+				$_SESSION['erro'] = "Activate your account by email.";
 				header('Location: index.php');
 				exit(0);
 			}
 			
 
 		} else {
-			$_SESSION['erro'] = "Email/Password incorreto(s)";
+			$_SESSION['erro'] = "Email/Password incorrect.";
 			header('Location: index.php');
 			exit(0);
 		}
 
 	} else {
-		$_SESSION['erro'] = "Preencha todos os dados";
+		$_SESSION['erro'] = "Fill all inputs.";
 		header('Location: index.php');
 		exit(0);
 	}
@@ -157,8 +157,14 @@ if (isset($_POST['postar'])) {
 
 	if (!empty($post)) {
 		if ($len_post > 0) {
+			//$id_link = preg_replace("#youtube\.com/watch?v=#" , "", $link);
+			if (strpos($post, 'youtube.com') !== false) {
+				$id_link = preg_replace("#youtube\.com/watch?v=#" , "", $post);
+				$post = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe class=\"text-center embed-responsive embed-responsive-21by9\" width=\"425\" height=\"344\" src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>", $post);
 
-			$post = preg_replace('"\b(https?://\S+)"', '<div class="text-center embed-responsive embed-responsive-21by9"><iframe class="embed-responsive-item" width="425" height="344" src="$1" frameborder="0" title="Video" allowfullscreen></iframe></div></a>', $post);
+				//$post = preg_replace('"\b(https?://\S+)"', '<div class="text-center embed-responsive embed-responsive-21by9"><iframe class="embed-responsive-item" width="425" height="344" src="https://www.youtube.com/embed/'.$id_link.'" frameborder="0" title="Video" allowfullscreen></iframe></div></a>', $post);
+			}
+			//$post = preg_replace('"\b(https?://\S+)"', '<div class="text-center embed-responsive embed-responsive-21by9"><iframe class="embed-responsive-item" width="425" height="344" src="$1" frameborder="0" title="Video" allowfullscreen></iframe></div></a>', $post);
 			
 
 
@@ -190,13 +196,13 @@ if (isset($_POST['postar'])) {
 
 			}
 		}
-		$_SESSION['sucesso'] = "Comentário publicado!";
+		$_SESSION['sucesso'] = "Post Published!";
 	} else {
-		$_SESSION['erro'] = "Preencha o comentário!";
+		$_SESSION['erro'] = "Fill the Postbox!";
 	}
 
 	
-	header("Location: profile.php?id=".$id_perfil."");
+	header("Location: profile/".$id_perfil."");
 	exit(0);
 }
 
@@ -208,12 +214,12 @@ if (isset($_POST['apagar'])) {
 	if (mysqli_num_rows($query) > 0) {
 		mysqli_query($link, "DELETE FROM posts WHERE id = '$id_post'");
 	} else {	
-		$_SESSION['erro'] = "Continua a tentar script kiddie!";
+		$_SESSION['erro'] = "Keep trying script kiddie!";
 	}
 	if (!empty($id_user_postado)) {
-		header("Location: profile.php?id=".$id_user_postado."");
+		header("Location: profile/".$id_user_postado."");
 	} else {
-		header("Location: home.php");
+		header("Location: /verao/en/home.php");
 	}
 	$_SESSION['info'] = "Comentário apagado!";
 	
@@ -222,10 +228,12 @@ if (isset($_POST['apagar'])) {
 }
 
 if (isset($_POST['mensagem'])) {
-	$id_user_mensage = mysqli_real_escape_string($link, $_POST['user']);
-	$id_user_mensage2 = mysqli_real_escape_string($link, $_POST['user2']);
-	$_SESSION['mensagem'] = array($id_user_mensage, $id_user_mensage2);
-	header('Location: mensagens.php');
+	$id_user_mensage = mysqli_real_escape_string($link, $_POST['user_id']);
+	$user_photo = mysqli_real_escape_string($link, $_POST['user_photo']);
+	$user_nome = mysqli_real_escape_string($link, $_POST['user_nome']);
+	$user_apelido = mysqli_real_escape_string($link, $_POST['user_apelido']);
+	$_SESSION['mensagem'] = array($id_user_mensage, $user_photo, $user_nome, $user_apelido);
+	header('Location: /verao/en/mensagens.php');
 	exit(0);
 }
 

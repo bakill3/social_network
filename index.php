@@ -7,12 +7,12 @@ if (isset($_SESSION['user'])) {
 }
 ?>
 
-	<div class="login-dark">
+	<div class="login-dark postbi">
         <form method="post" style="background: rgba(30, 40, 51, 0.75);">
             <div class="illustration"><input class="form-control-plaintext bounce animated text-center display-3" type="text" value="Sivex" readonly="" style="color:rgb(255,255,255);font-size:30%;"><i class="fal fa-user"></i></div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="login">Iniciar Sessão</button></div><a href="registo.php" class="forgot" style="color:rgb(255,255,255);font-size:14px;">Registar-se</a></form>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="login">Sign In</button></div><a href="registo.php" class="forgot" style="color:rgb(255,255,255);font-size:14px;">Register</a></form>
     </div>
 <script src="jquery.min.js"></script>
 <script>

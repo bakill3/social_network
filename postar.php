@@ -11,7 +11,12 @@ if (isset($_POST['post'])) {
 	if (!empty($post)) {
 		if ($len_post > 0) {
 
-			$post = preg_replace('"\b(https?://\S+)"', '<div class="text-center embed-responsive embed-responsive-21by9"><iframe class="embed-responsive-item" width="425" height="344" src="$1" frameborder="0" title="Video" allowfullscreen></iframe></div></a>', $post);
+			if (strpos($post, 'youtube.com') !== false) {
+				$id_link = preg_replace("#youtube\.com/watch?v=#" , "", $post);
+				$post = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe class=\"text-center embed-responsive embed-responsive-21by9\" width=\"425\" height=\"344\" src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>", $post);
+
+				//$post = preg_replace('"\b(https?://\S+)"', '<div class="text-center embed-responsive embed-responsive-21by9"><iframe class="embed-responsive-item" width="425" height="344" src="https://www.youtube.com/embed/'.$id_link.'" frameborder="0" title="Video" allowfullscreen></iframe></div></a>', $post);
+			}
 			
 
 
@@ -45,9 +50,9 @@ if (isset($_POST['post'])) {
 			}
 			*/
 		}
-		echo "Comentário publicado!";
+		echo "Post Published!";
 	} else {
-		echo "Preencha o comentário!";
+		echo "Fill the Postbox!";
 	}
 
 }
