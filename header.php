@@ -17,7 +17,6 @@ $url = $_SERVER['REQUEST_URI'];
 <html lang="en-en">
 <head>
 	<meta charset="UTF-8">
-	<base href="http://localhost:8012/verao/en/">
 
 	<meta name="description" content="Rede Social em desenvolvimento. Faz novas amizade ou conecta-te com amigos(as). Social Network in development. Envia mensagens, segue pessoas, publica fotos/fotografias">
 	<meta name="robots" content="index, follow">
