@@ -1,60 +1,40 @@
-# Social Network [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+# Social Network ![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
 
-![social_network](https://socialify.git.ci/bakill3/social_network/image?language=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Light)
+![Social Network Project](https://socialify.git.ci/bakill3/social_network/image?language=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Light)
 
-*I started this project on 04/08/2018 for practicing.*
+Welcome to the Social Network project, initiated on 04/08/2018 as a learning endeavor to create a full-fledged social networking platform.
 
-# Official Website
-https://network.socialsivex.com/
-The whole website is in English now.
+## [Official Website](https://network.socialsivex.com/)
+(Note: The website currently supports English language only.)
 
-## Current Features:
-  - Login/Register with email confirmation; - PHP
-  - Likes; - AJAX/PHP
-  - Profile;
-  - Gallery Modal/Alert;
-  - Anonymous Actions: - (no one will know it will just change the number like likes)
-    - "Make Out" with a user; - AJAX/jQuery/PHP/Real Time
-    - "Date" a with user; - AJAX/jQuery/PHP/Real Time
-  - Posts: - PHP
-    - Images;
-    - Embed WebSite/Videos/Youtube videos (iframes);
-    - Text;
-    - Emojis :smiley:;
-    - PopOver on the users and you'll see his info;
-  - Homepage:
-    - User Stats (how many are following the user and how many are people following the user;
-    - Postbox that works with ajax;
-    - Shorcuts to other pages;
-    - Posts using Lazy Loading;
-  - Following System; - Ajax/PHP
-  - Notification System with Sounds; - Ajax/PHP/JQuery - POST/MESSAGE/FOLLOW/LIKES
-  - New Improved Real-Time Messages - PHP/AJAX/JQuery
-  - Search; - Ajax/PHP
-  - Settings (About/Hobbies/Profile Picture/Relationship Status/Links from other social media to be displayed on the user's profile); - PHP/JS
-  - Edit Profile in Real Time (Like Twitter) - AJAX/jQuery/PHP;
-  - 
-  - Fresh Design (Background video and a really good background Image) - CSS/BOOTSTRAP
-  - New Logo; - DESIGN
-  - Good SEO; - SEO
-  - Good Fonts;
-    
+## Core Features
 
-![alt text](https://github.com/bakill3/social_network/blob/master/social2.png)
+- **Account Management**: User registration and login with email confirmation (PHP).
+- **User Interaction**: Likes (AJAX/PHP), Profile creation, and Gallery Modal/Alert.
+- **Anonymous Actions**: Enables users to "Make Out" or "Date" other users without identity revelation (AJAX/jQuery/PHP/Real Time).
+- **Posts**: Users can create posts with images, embed websites/videos/YouTube videos (iframes), text, emojis, and popover for user info (PHP).
+- **Homepage**: Displays user stats, AJAX-powered postbox, shortcuts to other pages, and posts with Lazy Loading.
+- **Following System**: AJAX/PHP-based following system.
+- **Notification System**: Real-time notifications with sound alerts for posts, messages, and follows (Ajax/PHP/JQuery).
+- **Messaging**: Real-time messaging system (PHP/AJAX/jQuery).
+- **Search**: AJAX/PHP-powered search system.
+- **User Settings and Profile Customization**: Includes options for updating profile details, hobbies, profile picture, relationship status, social media links, and real-time profile editing like Twitter (PHP/JS).
+- **Design**: Fresh and responsive design with a background video and image (CSS/BOOTSTRAP), along with a new logo (DESIGN).
+- **SEO and Typography**: Good SEO practices for visibility and readable fonts.
 
+![Social Network Screenshot](https://github.com/bakill3/social_network/blob/master/social2.png)
 
+## SEO/Performance
 
+We focus on performance and SEO, with features such as:
 
-## SEO/Other:
-  - Use of LazyLoad to load images at the "browser's view" - JS/SEO;
-  - Use of Infinite Scrolling for posts on the HomePage - JQuery/AJAX/PHP/SEO;
-  - PageSpeed Insights Results (22/09/2018 - SEO):
-  
-  Desktop 100/100            |  Mobile 100/100
-  :-------------------------:|:-------------------------:
-  ![](https://github.com/bakill3/social_network/blob/master/desktop.png) ![alt text](https://github.com/bakill3/social_network/blob/master/in1.png)  |  ![](https://github.com/bakill3/social_network/blob/master/mobile.png) ![alt text](https://github.com/bakill3/social_network/blob/master/in2.png)
-    
-    
+- **Lazy Loading**: Loads images as they come into the browser's view (JS/SEO).
+- **Infinite Scrolling**: Enables infinite scrolling for posts on the homepage (JQuery/AJAX/PHP/SEO).
+- **PageSpeed Insights**: Excellent scores recorded on 22/09/2018 (SEO):
+
+| Desktop 100/100 | Mobile 100/100 |
+|---|---|
+| ![Desktop](https://github.com/bakill3/social_network/blob/master/desktop.png) ![Insights1](https://github.com/bakill3/social_network/blob/master/in1.png) | ![Mobile](https://github.com/bakill3/social_network/blob/master/mobile.png) ![Insights2](https://github.com/bakill3/social_network/blob/master/in2.png) |
 
 
 
