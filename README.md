@@ -24,6 +24,9 @@ Welcome to the Social Network project, initiated on 04/08/2018 as a learning end
 
 ![Social Network Screenshot](https://github.com/bakill3/social_network/blob/master/social2.png)
 
+[![Watch the video](https://img.youtube.com/vi/4SXMmKn_MYs/maxresdefault.jpg)](https://www.youtube.com/watch?v=4SXMmKn_MYs)
+
+
 ## SEO/Performance
 
 We focus on performance and SEO, with features such as:
