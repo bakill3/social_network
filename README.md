@@ -3,6 +3,7 @@
 ![Social Network Project](https://socialify.git.ci/bakill3/social_network/image?language=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Light)
 
 Welcome to the Social Network project, initiated on 04/08/2018 as a learning endeavor to create a full-fledged social networking platform.
+
 PS: This was not the social network I made with 13 mentioned on my profile bio.
 
 ## [Official Website](https://network.socialsivex.com/)
